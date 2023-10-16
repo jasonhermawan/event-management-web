@@ -1,0 +1,35 @@
+#footer {
+  background-color: rgba(0, 40, 85, 1);
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 50px 100px;
+}
+
+#footer-list {
+  display: flex;
+  gap: 100px;
+}
+
+.footer-menu {
+  color: white;
+}
+
+.footer-menu h3 {
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+.footer-menu h5 {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 7px;
+}
+
+@media screen and (max-width: 1620px) {
+  #footer {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}

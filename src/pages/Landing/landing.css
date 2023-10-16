@@ -1,0 +1,34 @@
+.layouting {
+  margin: auto;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.image-slider img{
+  border-radius: 20px;
+  margin-bottom: 50px;
+}
+
+#top-choice h1 {
+  margin-bottom: 20px;
+}
+
+.event-cards {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+#category-section {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1620px) {
+  .layouting {
+    margin: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}

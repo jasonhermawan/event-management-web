@@ -1,0 +1,153 @@
+#top-section {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 50px;
+}
+
+#event-banner {
+  width: 65%;
+}
+
+#event-banner img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+#event-detail  {
+  width: 35%;
+  padding: 35px;
+  box-shadow: 0 0 10px rgba(78, 78, 78, 0.107);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#event-detail h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+#event-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#seats-left {
+  font-size: 14px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding-left: 15px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  width: 40%;
+  background-color: rgb(3, 83, 164);
+  color: white;
+  border-radius: 10px;
+}
+
+#seats-left i {
+  color: white;
+}
+
+.info-section {
+  display: flex;
+  gap: 10px;
+}
+
+.info-section i {
+  width: 20px;
+  text-align: center;
+  color: rgba(3, 83, 164, 1);
+}
+
+.info-section p {
+  font-size: 18px;
+}
+
+#promotor-section {
+  border-top: dashed 1px rgba(128, 128, 128, 0.456);
+}
+
+#promotor-section p {
+  margin-top: 20px;
+}
+
+#mid-section {
+  display: flex;
+  gap: 50px;
+}
+
+#event-desc {
+  width: 65%;
+}
+
+#event-desc p {
+  font-size: 18px;
+}
+
+#event-cart {
+  width: 35%;
+}
+
+#cart-card {
+  position: sticky;
+  top: 20px;
+  padding: 35px;
+  box-shadow: 0 0 10px rgba(78, 78, 78, 0.107);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#cart-card button {
+  margin-top: 30px;
+  background-color: rgb(3, 83, 164);
+  border: none;
+  padding: 15px;
+  color: white;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1500px) {
+  #event-detail  {
+    width: 35%;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(78, 78, 78, 0.107);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #event-detail h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  #seats-left {
+    width: 45%;
+  }
+
+  .info-section p {
+    font-size: 16px;
+  }
+
+  #promotor-section {
+    border-top: dashed 1px rgba(128, 128, 128, 0.456);
+  }
+  
+  #promotor-section p {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  #promotor-section h3 {
+    font-size: 16px;
+  }
+}

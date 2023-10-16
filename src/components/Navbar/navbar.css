@@ -1,0 +1,55 @@
+#navbar {
+  background-color: rgba(0, 40, 85, 1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+#left-nav {
+  width: 55%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#left-nav input {
+  height: 40px;
+  width: 100%;
+  padding: 15px 20px;
+  background-color: rgb(0, 53, 106);
+  border: none;
+  border-radius: 5px;
+}
+
+#left-nav input::placeholder {
+  color: rgb(222, 222, 222);
+}
+
+#right-nav {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.nav-menu {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-menu h3 {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 1620px) {
+  #navbar {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}

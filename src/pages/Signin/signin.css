@@ -1,0 +1,47 @@
+#signin-page {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#image-section {
+  width: 60%;
+}
+
+#form-section {
+  width: 100%;
+  padding: 100px;
+}
+
+#form-section img {
+  height: 25px;
+  margin-bottom: 20px;
+}
+
+#form-section h1 {
+  font-size: 56px;
+  margin-bottom: 30px;
+}
+
+#form-section input {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 50px;
+  padding: 20px;
+  border-radius: 10px;
+  border: solid 1px rgba(128, 128, 128, 0.168);
+}
+
+#form-section button {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: none;
+  background-color: rgb(0, 53, 106);
+  color: white;
+  height: 50px;
+  border-radius: 10px;
+}
