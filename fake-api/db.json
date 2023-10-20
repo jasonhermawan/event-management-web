@@ -40,6 +40,102 @@
       "date": "12 Oct 2023",
       "price": "Rp 1.350.000",
       "promotor": "Firman Nurhidayat"
+    },
+    {
+      "id": 5,
+      "name": "OMO! MARKET K-POP FESTIVAL",
+      "banner":"https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230927232153_651456a165823.jpg",
+      "date": "11 Nov - 12 Nov 2023",
+      "price": "Rp 50.000",
+      "promotor": "OMO MARKET"
+    },
+    {
+      "id": 6,
+      "name": "THE LEGENDS 9",
+      "banner":"https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20231005034459.jpg",
+      "date": "04 Nov - 05 Nov 2023",
+      "price": "Rp 250.000",
+      "promotor": "Ciputra Artpreneur"
+    },
+    {
+      "id": 7,
+      "name": "GONDOLA ANCOL",
+      "banner":"https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20210713121124.jpg",
+      "date": "01 Jul 2021 - 31 Dec 2023",
+      "price": "Rp 55.000",
+      "promotor": "PT Karsa Surya Indonusa"
+    },
+    {
+      "id": 8,
+      "name": "Bob's Hallowin Fest",
+      "banner":"https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20231017013854_652d833e26e56.jpg",
+      "date": "20 Oct - 21 Oct 2023",
+      "price": "Free",
+      "promotor": "Bobs Club by Bobobox"
+    },
+    {
+      "id": 9,
+      "name": "Festival Titik Temu 2023",
+      "banner":"https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230910204006_64fdc73699f08.jpg",
+      "date": "20 Oct - 21 Oct 2023",
+      "price": "Rp 30.000",
+      "promotor": "RNR Experience"
+    },
+    {
+      "id": 10,
+      "name": "DECADE by BOGOR RUNNERS",
+      "banner":"https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230916032501_6504bd9d72430.jpg",
+      "date": "21 Oct 2023",
+      "price": "Rp 55.000",
+      "promotor": "Bogor Runners"
+    },
+    {
+      "id": 11,
+      "name": "LIGA FISIP X FEL UAI 2023",
+      "banner":"https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20231011163951_65266d6745561.jpg",
+      "date": "19 Oct - 21 Oct 2023",
+      "price": "Rp 20.000",
+      "promotor": "LIGA FISIP X FEL UAI 2023"
+    },
+    {
+      "id": 12,
+      "name": "1 DAY TOUR OF BALI TEMPLES",
+      "banner":"https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20231009131132_65239994dcb74.jpg",
+      "date": "12 Oct 2023",
+      "price": "Rp 1.350.000",
+      "promotor": "Firman Nurhidayat"
+    },
+    {
+      "id": 13,
+      "name": "INDONESIA UNITED IN WORSHIP",
+      "banner":"https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230901124356_64f17a1c3e9cd.jpg",
+      "date": "28 Oct 2023",
+      "price": "Rp 164.000",
+      "promotor": "Prestige Promotions"
+    },
+    {
+      "id": 14,
+      "name": "PEKAN RAYA JATIM",
+      "banner":"https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230922011910.jpg",
+      "date": "14 Oct - 22 Oct 2023",
+      "price": "Rp 80.000",
+      "promotor": "Jatim Fair"
+    },
+    {
+      "id": 15,
+      "name": "M BLOC MUSIC FEST 2023",
+      "banner":"https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230927232928_651458683250c.jpg",
+      "date": "14 Oct - 15 Oct 2023",
+      "price": "Rp 105.000",
+      "promotor": "M Bloc"
+    },
+    {
+      "id": 16,
+      "name": "1 DAY TOUR OF BALI TEMPLES",
+      "banner":"https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20231009131132_65239994dcb74.jpg",
+      "date": "12 Oct 2023",
+      "price": "Rp 1.350.000",
+      "promotor": "Firman Nurhidayat"
     }
   ]
 }

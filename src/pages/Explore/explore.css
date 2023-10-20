@@ -1,0 +1,28 @@
+#explore-navbar {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#explore-filter {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+#explore-filter select {
+  padding: 10px;
+}
+
+#explore-content {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1272px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#pagination {
+  margin-top: 30px;
+}

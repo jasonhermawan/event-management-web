@@ -1,0 +1,12 @@
+.layouting {
+  margin: auto;
+  max-width: 1272px;
+}
+
+@media screen and (max-width: 1620px) {
+  .layouting {
+    margin: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}

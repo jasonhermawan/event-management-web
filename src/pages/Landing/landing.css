@@ -1,9 +1,3 @@
-.layouting {
-  margin: auto;
-  padding-left: 100px;
-  padding-right: 100px;
-}
-
 .image-slider img{
   border-radius: 20px;
   margin-bottom: 50px;
@@ -23,12 +17,4 @@
   margin-top: 50px;
   display: flex;
   justify-content: space-between;
-}
-
-@media screen and (max-width: 1620px) {
-  .layouting {
-    margin: auto;
-    padding-left: 50px;
-    padding-right: 50px;
-  }
 }

@@ -1,6 +1,10 @@
+#card-container {
+  padding: 10px;
+  width: 25%;
+}
+
 #card {
   cursor: pointer;
-  width: 25%;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.135);
   border-radius: 10px;
@@ -21,21 +25,26 @@
 }
 
 #card-details h1 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   margin: 0;
   margin-bottom: 10px;
+  --max-lines: 1;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--max-lines);
 }
 
 #date {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   color: gray;
   margin-bottom: 10px;
 }
 
 #price {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: black;
   margin-bottom: 25px;
@@ -46,8 +55,7 @@
 }
 
 #promotor {
-  margin-top: 20px;
-  margin-bottom: 5px;
+  margin-top: 15px;
   font-size: 16px;
   font-weight: 500;
 }
