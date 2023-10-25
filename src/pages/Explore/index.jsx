@@ -48,14 +48,10 @@ const Explore = () => {
         <div id="explore-navbar">
           <h1>Upcoming Events</h1>
           <div id="explore-filter">
-            <label htmlFor="price-filter">Price</label>
             <select name="" id="price-filter">
               <option value="">Filter by price</option>
-              <option value="">Free</option>
-              <option value="">Rp 1 - Rp 100.000</option>
-              <option value="">Rp 100.001 - Rp 250.000</option>
-              <option value="">Rp 250.001 - Rp 500.000</option>
-              <option value="">More than Rp 500.000</option>
+              <option value="asc">Lowest to Highest</option>
+              <option value="desc">Highest to Lowest</option>
             </select>
           </div>
         </div>

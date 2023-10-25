@@ -10,3 +10,11 @@
     padding-right: 50px;
   }
 }
+
+@media screen and (max-width: 650px)  {
+  .layouting {
+    max-width: 90%;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}

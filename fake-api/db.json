@@ -5,7 +5,7 @@
       "username": "Admin",
       "email": "admin@gmail.com",
       "password": "iniAdmin123",
-      "promotor": true
+      "role": "Promotor"
     }
   ],
   "event": [
