@@ -9,6 +9,10 @@
   padding-right: 100px;
 }
 
+.logo {
+  height: 30px;
+}
+
 #left-nav {
   width: 55%;
   display: flex;
