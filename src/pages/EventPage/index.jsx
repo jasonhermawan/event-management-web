@@ -40,7 +40,7 @@ const EventPage = () => {
 
   return (
     <Layout>
-      <div className="layouting">
+      <div className="layouting page-padding">
         <div id="top-section">
           <div id="event-banner">
             <img src="https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230901124356_64f17a1c3e9cd.jpg" alt="" />

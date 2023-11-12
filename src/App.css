@@ -3,6 +3,11 @@
   max-width: 1272px;
 }
 
+.page-padding {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
 @media screen and (max-width: 1620px) {
   .layouting {
     margin: auto;

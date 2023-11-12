@@ -1,4 +1,4 @@
-#card-container {
+#card-container-explore {
   padding: 10px;
   min-width: 25%;
   max-width: 25%;
@@ -17,6 +17,8 @@
 }
 
 #card img {
+  height: 140px;
+  object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -76,14 +78,12 @@
   -webkit-line-clamp: var(--max-lines);
 }
 
-@media screen and (max-width: 1620px) {
+@media screen and (max-width: 1300px) {
   #card-details h1{
     font-size: 16px;
   }
-}
 
-@media screen and (max-width: 1130px) {
-  #card-container {
+  #card-container-explore {
     padding: 10px;
     min-width: 33%;
     max-width: 33%;
@@ -101,7 +101,7 @@
 }
 
 @media screen and (max-width: 850px) {
-  #card-container {
+  #card-container-explore {
     padding: 10px;
     min-width: 50%;
     max-width: 50%;
@@ -113,10 +113,10 @@
 }
 
 @media screen and (max-width: 550px) {
-  #card-container {
+  #card-container-explore {
     padding: 10px;
-    min-width: 90%;
-    max-width: 90%;
+    min-width: 100%;
+    max-width: 100%;
   }
 }
 

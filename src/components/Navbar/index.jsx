@@ -36,15 +36,15 @@ const Navbar = () => {
         </div>
       </div>
       <div id="mobile-menu">
-        <div className="mobile-menu-item">
+        <div className="mobile-menu-item" onClick={() => navigate("/")}>
           <i class="fa-solid fa-house-chimney"></i>
           <h3>Home</h3>
         </div>
-        <div className="mobile-menu-item">
+        <div className="mobile-menu-item" onClick={() => navigate("/")}>
           <i class="fa-solid fa-calendar-plus"></i>
           <h3>Create Event</h3>
         </div>
-        <div className="mobile-menu-item">
+        <div className="mobile-menu-item" onClick={() => navigate("/explore")}>
           <i class="fa-solid fa-compass"></i>
           <h3>Explore</h3>
         </div>

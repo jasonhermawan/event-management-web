@@ -1,0 +1,29 @@
+#popular-card {
+  min-width: 30%;
+  max-width: 30%;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#popular-card h1 {
+  font-size: 60px;
+  color: rgb(207, 207, 207);
+}
+
+#popular-card img {
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 850px) {
+  #popular-card {
+   min-width: 100%;
+  } 
+
+  #popular-card img {
+    border-radius: 10px;
+    min-height: 80%;
+    max-height: 80%;
+  }
+}

@@ -6,6 +6,8 @@ import EventCard from '../../components/EventCard'
 import { useState, useEffect } from 'react'
 import './explore.css'
 import Pagination from '../../components/Pagination'
+import EventCardExplore from '../../components/EventCardExplore'
+import ExploreSidebar from '../../components/ExploreSidebar'
 
 const Explore = () => {
   const [eventList, setEventList] = useState([])
@@ -31,7 +33,7 @@ const Explore = () => {
   const printEventList = () => {
     return eventList.slice(firstEventIndex, lastEventIndex).map((val)=>{
       return(
-        <EventCard 
+        <EventCardExplore 
           eventImage={val.banner}
           eventTitle={val.name}
           eventDate={val.date}
@@ -44,22 +46,28 @@ const Explore = () => {
 
   return (
     <Layout>
-      <div id='explore-page' className='layouting'>
-        <div id="explore-navbar">
-          <h1>Upcoming Events</h1>
-          <div id="explore-filter">
-            <select name="" id="price-filter">
-              <option value="">Filter by price</option>
-              <option value="asc">Lowest to Highest</option>
-              <option value="desc">Highest to Lowest</option>
-            </select>
-          </div>
+      <div id='explore-page'>
+        <div id="explore-sidebar">
+          <ExploreSidebar />
         </div>
+        
         <div id="explore-content">
-          {printEventList()}
-        </div>
-        <div id="pagination">
-          <Pagination totalEvents={eventList.length} eventPerPage={eventPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+          <div id="explore-navbar">
+            <h1>Upcoming Events</h1>
+            <div id="explore-filter">
+              <select name="" id="price-filter">
+                <option value="">Filter by price</option>
+                <option value="asc">Lowest to Highest</option>
+                <option value="desc">Highest to Lowest</option>
+              </select>
+            </div>
+          </div>
+          <div id="explore-cards">
+            {printEventList()}
+          </div>
+          <div id="pagination">
+            <Pagination totalEvents={eventList.length} eventPerPage={eventPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+          </div>
         </div>
       </div>
     </Layout>
