@@ -41,10 +41,21 @@
   margin-top: 50px;
 }
 
-#entertainment-section h1 {
+#entertainment-section, #promotor-card-section h1 {
   margin-bottom: 20px;
   font-weight: 700;
   font-size: 32px;
+}
+
+#promotor-card-section #card-container {
+  min-width: 100%;
+  max-width: 100%;
+  overflow: auto;
+  background: linear-gradient(180deg, white, rgba(236, 236, 236, 0.378), white);
+  border-radius: 10px;
+  display: flex;
+  gap: 20px;
+  padding: 0px;
 }
 
 #explore-more-btn{

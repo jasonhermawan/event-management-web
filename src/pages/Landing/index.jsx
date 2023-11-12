@@ -6,6 +6,7 @@ import axios from 'axios'
 import {API_URL} from '../../helper'
 import { useNavigate } from 'react-router-dom'
 import PopularCard from '../../components/PopularCard'
+import PromotorCard from '../../components/PromotorCard'
 
 const LandingPage = () => {
   const navigate = useNavigate()
@@ -76,6 +77,21 @@ const LandingPage = () => {
             <h1>Let's Have Fun</h1>
             <div className="event-cards">
               {printEventList()}
+            </div>
+          </div>
+
+          <div id='promotor-card-section'>
+            <h1>Promotor to stalk</h1>
+            <div id="card-container">
+              <PromotorCard />
+              <PromotorCard />
+              <PromotorCard />
+              <PromotorCard />
+              <PromotorCard />
+              <PromotorCard />
+              <PromotorCard />
+              <PromotorCard />
+              <PromotorCard />
             </div>
           </div>
 
