@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './eventPage.css'
 import Layout from '../../Layout'
 import axios from "axios"
-import {API_URL} from '../../helper'
 import EventCard from '../../components/EventCard'
 import { useNavigate } from 'react-router-dom'
 import TicketCategory from '../../components/TicketCategory'
@@ -12,7 +11,7 @@ const EventPage = () => {
   const navigate = useNavigate()
 
   const getEvent = () => {
-    axios.get(`${API_URL}/event`)
+    axios.get(`${import.meta.env.VITE_API_URL}/events`)
     .then((res)=>{
       setEventList(res.data)
     }).catch((err)=>{

@@ -3,6 +3,12 @@
   margin-bottom: 50px;
 }
 
+.image-banner img{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 20px;
+}
+
 #top-choice h1 {
   margin-bottom: 20px;
   font-weight: 700;
@@ -37,11 +43,17 @@
   margin-bottom: 20px;
 }
 
-#entertainment-section {
+#entertainment-section, #talkshow-section {
   margin-top: 50px;
 }
 
 #entertainment-section, #promotor-card-section h1 {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+#talkshow-section h1 {
   margin-bottom: 20px;
   font-weight: 700;
   font-size: 32px;

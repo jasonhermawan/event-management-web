@@ -8,6 +8,7 @@ import Signin from './pages/Signin'
 import CreateEvent from './pages/CreateEvent'
 import Explore from './pages/Explore'
 import Checkout from './pages/Checkout'
+import PromotorPage from './pages/PromotorPage'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <Route path='/event' element={<EventPage />}/>
       <Route path='/checkout' element={<Checkout />}/>
       <Route path='/create-event' element={<CreateEvent />}/>
+      <Route path='/promotor' element={<PromotorPage />}/>
     </Routes>
    </div>
   )

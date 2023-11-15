@@ -1,8 +1,6 @@
 import React from 'react'
 import './createEvent.css'
 import Layout from '../../Layout'
-import axios from 'axios'
-import {API_URL} from '../../helper'
 
 const CreateEvent = () => {
   return (

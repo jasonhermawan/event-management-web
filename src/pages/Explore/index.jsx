@@ -1,8 +1,6 @@
 import React from 'react'
 import Layout from '../../Layout'
 import axios from 'axios'
-import {API_URL} from '../../helper'
-import EventCard from '../../components/EventCard'
 import { useState, useEffect } from 'react'
 import './explore.css'
 import Pagination from '../../components/Pagination'
@@ -15,7 +13,7 @@ const Explore = () => {
   const [eventPerPage, setEventPerPage] = useState(8)
 
   const getEvent = () => {
-    axios.get(`${API_URL}/event`)
+    axios.get(`${import.meta.env.VITE_API_URL}/event`)
     .then((res)=>{
       setEventList(res.data)
     }).catch((err)=>{
