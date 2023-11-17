@@ -1,7 +1,7 @@
 import React from 'react'
 import './exploreSidebar.css'
 
-const ExploreSidebar = () => {
+const ExploreSidebar = (props) => {
   return (
     <div id='explore-bar'>
       <h1>Filter Event</h1>

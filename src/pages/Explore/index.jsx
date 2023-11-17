@@ -13,7 +13,7 @@ const Explore = () => {
   const [eventPerPage, setEventPerPage] = useState(8)
 
   const getEvent = () => {
-    axios.get(`${import.meta.env.VITE_API_URL}/event`)
+    axios.get(`${import.meta.env.VITE_API_URL}/events`)
     .then((res)=>{
       setEventList(res.data)
     }).catch((err)=>{
@@ -36,7 +36,7 @@ const Explore = () => {
           eventTitle={val.name}
           eventDate={val.date}
           eventPrice={val.price}
-          promotor={val.promotor}
+          promotor={val.account.username}
         />
       )
     })
