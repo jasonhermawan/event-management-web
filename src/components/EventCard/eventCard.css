@@ -12,9 +12,9 @@
   transition: all ease 0.3s;
 }
 
-#card:hover {
+/* #card:hover {
   transform: translateY(-10px);
-}
+} */
 
 #card img {
   border-top-left-radius: 10px;

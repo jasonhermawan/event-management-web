@@ -1,0 +1,24 @@
+.dropdown-item h2 {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  gap: 10px;
+  transition: all ease 0.3s;
+}
+
+.dropdown-item h2:hover {
+  color: #0049cc;
+}
+
+.dropdown-item i {
+  background-color: rgba(229, 237, 248, 0.588);
+  color: #0049cc;
+  padding: 8px;
+  border-radius: 50px;
+}
+
+.dropdown-divider {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
