@@ -21,12 +21,14 @@
 }
 
 #left-nav input {
-  height: 40px;
+  height: 50px;
   width: 100%;
   padding: 15px 20px;
   background-color: rgb(0, 53, 106);
+  color: white;
   border: none;
   border-radius: 5px;
+  outline: none;
 }
 
 #left-nav input::placeholder {

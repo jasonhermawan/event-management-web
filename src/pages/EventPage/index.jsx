@@ -1,56 +1,73 @@
 import React, { useEffect, useState } from 'react'
 import './eventPage.css'
 import Layout from '../../Layout'
-import axios from "axios"
+import axios from 'axios'
 import EventCard from '../../components/EventCard'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import TicketCategory from '../../components/TicketCategory'
 
 const EventPage = () => {
+  const params = useParams();
   const [eventList, setEventList] = useState([])
+  const [eventName, setEventName] = useState("");
+  const [eventPromotor, setEventPromotor] = useState("");
+  const [eventBanner, setEventBanner] = useState("");
   const navigate = useNavigate()
 
-  const getEvent = () => {
-    axios.get(`${import.meta.env.VITE_API_URL}/events`)
-    .then((res)=>{
-      setEventList(res.data)
-    }).catch((err)=>{
-      console.log(err);
-    })
+  const getEventDetail = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/events?id=${params.eventid}`)
+      setEventName(response.data[0].name);
+      setEventPromotor(response.data[0].account.username);
+      setEventBanner(response.data[0].banner);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const getEvent = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/events`)
+      setEventList(response.data)
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(()=>{
+    getEventDetail()
     getEvent()
   },[])
 
   const printEventList = () => {
     return eventList.map((val)=>{
       return(
-        <EventCard 
+        <EventCard
+          onclick={() => {navigate(`/event/${val.name}/${val.id}`); getEventDetail()}}
           eventImage={val.banner}
           eventTitle={val.name}
           eventDate={val.date}
           eventPrice={val.price}
-          promotor={val.promotor}
+          promotor={val.account.username}
         />
       )
     })
   }
+
+  useEffect(() => {
+    getEventDetail()
+  }, [printEventList])
 
   return (
     <Layout>
       <div className="layouting page-padding">
         <div id="top-section">
           <div id="event-banner">
-            <img src="https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230901124356_64f17a1c3e9cd.jpg" alt="" />
+            <img src={eventBanner} alt="" />
           </div>
           <div id="event-detail">
             <div id="event-info">
-              <div id="seats-left">
-                <i class="fa-solid fa-ticket-simple"></i>
-                <p>20 Seats left!</p>
-              </div>
-              <h1>INDONESIA UNITED IN WORSHIP</h1>
+              <h1>{eventName}</h1>
               <div className="info-section">
                 <i class="fa-solid fa-calendar-days"></i>
                 <p>28 Oct 2023</p>
@@ -66,7 +83,7 @@ const EventPage = () => {
             </div>
             <div id="promotor-section">
               <p>Event by</p>
-              <h3>Prestige Promotions</h3>
+              <h3>{eventPromotor}</h3>
             </div>
           </div>
         </div>

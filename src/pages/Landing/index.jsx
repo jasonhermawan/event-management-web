@@ -65,6 +65,7 @@ const LandingPage = () => {
     return eventList.map((val)=>{
       return(
         <EventCard 
+          onclick={() => navigate(`/event/${val.name}/${val.id}`)}
           eventImage={val.banner}
           eventTitle={val.name}
           eventDate={val.date}
@@ -79,6 +80,7 @@ const LandingPage = () => {
     return eventEntertainment.map((val) => {
       return (
         <EventCard 
+          onclick={() => navigate(`/event/${val.name}/${val.id}`)}
           eventImage={val.banner}
           eventTitle={val.name}
           eventDate={val.date}
@@ -92,7 +94,8 @@ const LandingPage = () => {
   const printEducation = () => {
     return eventEducation.map((val) => {
       return (
-        <EventCard 
+        <EventCard
+          onclick={() => navigate(`/event/${val.name}/${val.id}`)} 
           eventImage={val.banner}
           eventTitle={val.name}
           eventDate={val.date}
@@ -107,6 +110,7 @@ const LandingPage = () => {
     return eventListByCity.map((val) => {
       return (
         <EventCard 
+          onclick={() => navigate(`/event/${val.name}/${val.id}`)}
           eventImage={val.banner}
           eventTitle={val.name}
           eventDate={val.date}
@@ -118,7 +122,7 @@ const LandingPage = () => {
   }
 
   const printPopular = () => {
-    return eventList.slice(3,6).map((val, idx) => {
+    return eventList.slice(1,4).map((val, idx) => {
       return (
         <PopularCard 
           nums={idx + 1}

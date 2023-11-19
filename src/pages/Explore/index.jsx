@@ -6,11 +6,14 @@ import './explore.css'
 import Pagination from '../../components/Pagination'
 import EventCardExplore from '../../components/EventCardExplore'
 import ExploreSidebar from '../../components/ExploreSidebar'
+import { useNavigate } from 'react-router-dom'
 
 const Explore = () => {
   const [eventList, setEventList] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [eventPerPage, setEventPerPage] = useState(8)
+
+  const navigate = useNavigate();
 
   const getEvent = () => {
     axios.get(`${import.meta.env.VITE_API_URL}/events`)
@@ -31,7 +34,8 @@ const Explore = () => {
   const printEventList = () => {
     return eventList.slice(firstEventIndex, lastEventIndex).map((val)=>{
       return(
-        <EventCardExplore 
+        <EventCardExplore
+          onclick={() => navigate(`/event/${val.name}/${val.id}`)} 
           eventImage={val.banner}
           eventTitle={val.name}
           eventDate={val.date}

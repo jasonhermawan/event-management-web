@@ -7,7 +7,7 @@ const EventCard = (props) => {
 
   return (
     <div id="card-container">
-      <div id='card' onClick={() => navigate("/event")}>
+      <div id='card' onClick={props.onclick}>
         <img src={props.eventImage} alt={props.eventTitle} width="100%"/>
         <div id="card-details">
           <h1 id='title'>{props.eventTitle}</h1>

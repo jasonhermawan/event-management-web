@@ -7,7 +7,7 @@ const EventCardExplore = (props) => {
 
   return (
     <div id="card-container-explore">
-      <div id='card' onClick={() => navigate("/event")}>
+      <div id='card' onClick={props.onclick}>
         <img src={props.eventImage} alt={props.eventTitle}/>
         <div id="card-details">
           <h1 id='title'>{props.eventTitle}</h1>

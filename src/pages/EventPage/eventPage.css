@@ -10,6 +10,8 @@
 
 #event-banner img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 15px;
 }
 
@@ -35,24 +37,6 @@
   gap: 15px;
 }
 
-#seats-left {
-  font-size: 14px;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  padding-left: 15px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  width: 40%;
-  background-color: rgb(3, 83, 164);
-  color: white;
-  border-radius: 10px;
-}
-
-#seats-left i {
-  color: white;
-}
-
 .info-section {
   display: flex;
   gap: 10px;
@@ -69,6 +53,7 @@
 }
 
 #promotor-section {
+  margin-top: 50px;
   border-top: dashed 1px rgba(128, 128, 128, 0.456);
 }
 
