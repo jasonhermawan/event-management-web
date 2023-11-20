@@ -8,11 +8,20 @@ import { useNavigate } from 'react-router-dom'
 const Navbar = () => {
   const navigate = useNavigate()
 
+  const printSearchResult = () => {
+
+  }
+
   return (
     <div id="navbar">
       <div id="left-nav">
         <img className='logo' src={Logo} alt="" height={"30px"} onClick={()=>navigate("/")} style={{cursor: "pointer"}}/>
-        <input type="text" placeholder='Search event name' className='nav-search'/>
+        <div id="search-input-section">
+          <input type="text" placeholder='Search event name' className='nav-search'/>
+          {/* <div id="search-input-result">
+            {printSearchResult}
+          </div> */}
+        </div>
       </div>
       <div id="right-nav">
         <div id="desktop-nav">

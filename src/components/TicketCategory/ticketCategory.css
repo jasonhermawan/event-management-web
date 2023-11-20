@@ -27,3 +27,9 @@
   width: 10px;
   text-align: center;
 }
+
+@media screen and (max-width: 1100px) {
+  #ticket-category-card  {
+    padding: 13px;
+  }
+}

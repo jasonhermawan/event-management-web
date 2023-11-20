@@ -20,6 +20,21 @@
   gap: 20px;
 }
 
+#search-input-section {
+  width: 100%;
+  position: relative;
+}
+
+#search-input-result {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.136);
+  padding: 10px;
+}
+
 #left-nav input {
   height: 50px;
   width: 100%;
