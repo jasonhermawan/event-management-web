@@ -6,17 +6,20 @@ import './explore.css'
 import Pagination from '../../components/Pagination'
 import EventCardExplore from '../../components/EventCardExplore'
 import ExploreSidebar from '../../components/ExploreSidebar'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const Explore = () => {
+  const search = useLocation().search;
   const [eventList, setEventList] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [eventPerPage, setEventPerPage] = useState(8)
 
+  console.log(search);
+
   const navigate = useNavigate();
 
   const getEvent = () => {
-    axios.get(`${import.meta.env.VITE_API_URL}/events`)
+    axios.get(`${import.meta.env.VITE_API_URL}/events${search}`)
     .then((res)=>{
       setEventList(res.data)
     }).catch((err)=>{
@@ -26,7 +29,7 @@ const Explore = () => {
 
   useEffect(()=>{
     getEvent()
-  },[])
+  },[search])
 
   const lastEventIndex = currentPage * eventPerPage;
   const firstEventIndex = lastEventIndex - eventPerPage;
