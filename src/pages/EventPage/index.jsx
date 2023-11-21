@@ -257,15 +257,21 @@ const EventPage = () => {
                 </TabPanel>
                 <TabPanel>
                   <div id="mobile-tickets">
-                  <TicketCategory ticketName="Silver" ticketPrice="Rp 25.000" />
-                  <TicketCategory ticketName="Gold" ticketPrice="Rp 50.000" />
-                  <TicketCategory ticketName="Platinum" ticketPrice="Rp 100.000" />
-                  <button
-                    onClick={() => navigate("/checkout")}
-                    style={{ cursor: "pointer" }}
-                  >
-                    Buy Ticket
-                  </button>
+                    <TicketCategory
+                      ticketName="Silver"
+                      ticketPrice="Rp 25.000"
+                    />
+                    <TicketCategory ticketName="Gold" ticketPrice="Rp 50.000" />
+                    <TicketCategory
+                      ticketName="Platinum"
+                      ticketPrice="Rp 100.000"
+                    />
+                    <button
+                      onClick={() => navigate("/checkout")}
+                      style={{ cursor: "pointer" }}
+                    >
+                      Buy Ticket
+                    </button>
                   </div>
                 </TabPanel>
               </TabPanels>

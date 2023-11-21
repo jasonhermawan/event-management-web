@@ -3,6 +3,10 @@
   max-width: 1272px;
 }
 
+* {
+  scroll-behavior: smooth;
+}
+
 .page-padding {
   padding-top: 50px;
   padding-bottom: 50px;
