@@ -20,288 +20,540 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  RadioGroup,
-  HStack,
-  Radio,
-  Image
+  Image,
+  Textarea,
 } from "@chakra-ui/react";
 import Layout from "../../Layout";
 import "./createEvent.css";
 import { FaUpload } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { BsCalendar2DateFill } from "react-icons/bs";
-import { HiOutlineTicket } from 'react-icons/hi2';
-import Banner from '../../assets/banner-event.jpg'
+import { HiOutlineTicket } from "react-icons/hi2";
+import Banner from "../../assets/banner-event.jpg";
 // import { FaMoneyBillAlt, FaMoneyBillWave } from 'react-icons/fa';
 import axios from "axios";
 import { API_URL } from "../../helper";
 
 const CreateEvent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [isDateModalOpen, setIsDateModalOpen] = useState(false);
-  // const [isTimeModalOpen, setIsTimeModalOpen] = useState(false);
   const [isDateTimeModalOpen, setIsDateTimeModalOpen] = useState(false);
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
   const [selectedFormat, setSelectedFormat] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("");
-  const [eventName, setEventName] = useState("");
   const [tags, setTags] = useState("");
+  const [eventName, setEventName] = useState("");
   const [hostedBy, setHostedBy] = useState("");
-  // const [selectedDate, setSelectedDate] = useState("");
-  // const [selectedTime, setSelectedTime] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const [selectedTab, setSelectedTab] = useState(0);
-  const [ticketType, setTicketType] = useState('free');
-  const [selectedTicketCategory, setSelectedTicketCategory] = useState('gold');
+  // const [selectedTab, setSelectedTab] = useState(0);
+  // const [ticketType, setTicketType] = useState("free");
+  // const [selectedTicketCategory, setSelectedTicketCategory] = useState('gold');
+  const [isPaidTicketModalOpen, setPaidTicketModalOpen] = useState(false);
+  const [isFreeTicketModalOpen, setFreeTicketModalOpen] = useState(false);
+  const [selectedTicketType, setSelectedTicketType] = useState("paid");
+  const [ticketName, setTicketName] = useState("");
+  const [ticketQuantity, setTicketQuantity] = useState("");
+  const [ticketPrice, setTicketPrice] = useState("");
+  const [eventDescription, setEventDescription] = useState("");
+  const [placeName, setPlaceName] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [paidTickets, setPaidTickets] = useState([]);
+  const [freeTickets, setFreeTickets] = useState([]);
+  const [datePreview, setDatePreview] = useState("");
+  const [timePreview, setTimePreview] = useState("");
+  const [locationPreview, setLocationPreview] = useState("");
+  const [catEventPreview, setCatEventPreview] = useState("");
+  const [banner, setBanner] = useState("");
 
-  const handleSaveCategory = () => {
-    // Handle save func
+
+  const handleTabChange = (index) => {
+    if (index === 0) {
+      setSelectedTicketType("paid");
+    } else if (index === 1) {
+      setSelectedTicketType("free");
+    }
   };
+
+  const openPaidTicketModal = () => {
+    setPaidTicketModalOpen(true);
+    setSelectedTicketType("paid");
+    setTicketName("");
+    setTicketQuantity("");
+    setTicketPrice("");
+  };
+
+  const openFreeTicketModal = () => {
+    setFreeTicketModalOpen(true);
+    setSelectedTicketType("free");
+    setTicketName("");
+    setTicketQuantity("");
+  };
+
+  const closePaidTicketModal = () => {
+    setPaidTicketModalOpen(false);
+  };
+
+  const closeFreeTicketModal = () => {
+    setFreeTicketModalOpen(false);
+  };
+
+  // const handleSaveCategory = () => {
+  //   // Handle save func
+
+  // };
 
   const handleBannerUpload = () => {
     // handle save banner
+    console.log("Add Banner:", {
+      banner:banner
+    });
   };
 
   const handleLogoUpload = () => {
     //handle save logo
   };
 
-  const handleSaveDate = () => {};
+  // const handleSaveDate = () => {};
 
-  const handleSaveTime = () => {
-    // Handle save func
+  // const handleSaveTime = () => {
+  //   // Handle save func
+  // };
+
+  // const handleSaveLocation = () => {};
+
+  const handleSaveCategory = () => {
+    // Handle save category logic
+    const preview = `${selectedFormat}, ${selectedTopic}, ${tags}`;
+    setCatEventPreview(preview);
+    console.log("Added Category Event: ", {
+      format: selectedFormat,
+      topic: selectedTopic,
+      tags: tags,
+    });
   };
 
-  const handleSaveLocation = () => {};
-  const handleTabChange = (index) => {
-    setSelectedTab(index);
+  const handleSaveDate = () => {
+    // Handle save date  func
+    const preview = `${startDate} - ${endDate}`;
+    setDatePreview(preview);
+    console.log("Added Date: ", {
+      startDate: startDate,
+      endDate: endDate,
+    });
+  };
+  
+  const handleSaveTime = () => {
+    // Handle save time func
+    const preview = `${startTime} - ${endTime}`;
+    setTimePreview(preview);
+    console.log("Added Time: ", {
+      startTime: startTime,
+      endTime: endTime,
+    });
+  };
+  
+  const handleSaveLocation = () => {
+    const preview = `${placeName}, ${address}, ${city}`;
+    setLocationPreview(preview);
+    console.log("Added Location: ", {
+      placeName: placeName,
+      address: address,
+      city: city,
+    });
+  };
+
+  const handleAddTicketPaid = () => {
+    // Handle adding a ticket func
+    const isTicketValid = ticketName && ticketQuantity && ticketPrice;
+
+    if (isTicketValid) {
+      const newPaidTicket = {
+        name: ticketName,
+        quantity: ticketQuantity,
+        price: ticketPrice,
+        type: selectedTicketType,
+      };
+
+      setPaidTickets([...paidTickets, newPaidTicket]);
+      setTicketName("");
+      setTicketQuantity("");
+      setTicketPrice("");
+    }
+  };
+
+  const handleAddTicketFree = () => {
+    // Handle ticket func
+    const isTicketValid = ticketName && ticketQuantity;
+
+    if (isTicketValid) {
+      const newFreeTicket = {
+        name: ticketName,
+        quantity: ticketQuantity,
+        type: selectedTicketType,
+      };
+
+      setFreeTickets([...freeTickets, newFreeTicket]);
+      setTicketName("");
+      setTicketQuantity("");
+    }
+  };
+
+  const handleCreateEvent = () => {
+    const event = {
+      eventName: eventName,
+      eventCategory: {
+        eventFormat: selectedFormat,
+        eventTopic: selectedTopic,
+      },
+      eventDateAndTime: {
+        startDate: startDate,
+        endDate: endDate,
+        startTime: startTime,
+        endTime: endTime,
+      },
+      eventLocation: {
+        placeName: placeName,
+        address: address,
+        city: city,
+      },
+      paidTickets: paidTickets,
+      freeTickets: freeTickets,
+      eventDescription: eventDescription,
+    };
+
+    console.log("Event created:", event);
   };
 
   return (
     <Layout>
       <Box
+        boxSize={{ base: "60%", lg:"100%", xl: "60%" }}
+        // p={{ base: 2, md: 4, xl: 2 }}
         display="flex"
+        w={{ base: "100%", md: "100%", xl: "100%" }}
         flexDirection="column"
+        justifyContent={"center"}
         alignItems="center"
-        borderWidth={"1px"}
-        borderColor={"gray"}
-        margin={"auto"}
-        w={"60%"}
-        borderRadius={"3%"}
-
       >
         <Box
-  w="100%"
-  h="420px"
-  borderWidth="1px"
-  borderColor="gray"
-  borderRadius="3%"
-  borderBottomRadius={0}
-  padding={0}
-  display="flex"
-  flexDirection="column"
-  alignItems="center"
-  justifyContent="center"
-  position="relative"
->
-  <label
-    htmlFor="file-banner"
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      cursor: "pointer",
-    }}
-  >
-    <Box
-      as="span"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      w="60px"
-      h="60px"
-      borderRadius="50%"
-      bg="blue.200"
-      color="white"
-      marginBottom="8px"
-    >
-      <FaUpload size={25} />
-    </Box>
-  </label>
-  <Input
-    type="file"
-    id="file-banner"
-    accept="image/*"
-    display="none"
-    onChange={handleBannerUpload}
-    position="absolute"
-    top="0"
-    left="0"
-    width="100%"
-    height="100%"
-    opacity="0"
-    cursor="pointer"
-  />
-  <Image
-    src={Banner}
-    alt="Banner"
-    width="100%"
-    height="auto"
-    position="absolute"
-    top="0"
-    left="0"
-    zIndex="-1"
-    borderRadius={"3%"}
-    borderBottomRadius={0}
-  />
-  <Text fontSize="40px" color="white">
-    Upload images/posters/banners
-  </Text>
-  <Text fontSize="25px" color="white">
-    Recommended 724 x 340px and no more than 2Mb
-  </Text>
-</Box>
-
-        <Box w="100%" p={4} paddingLeft={"65px"} paddingBottom={"40px"}>
-          <FormControl>
-            <FormControl>
-              <Input
-                type="text"
-                placeholder="Event Name*"
-                fontSize={"25px"}
-                value={eventName}
-                onChange={(e) => setEventName(e.target.value)}
-                bg="transparent"
-                borderWidth="0 0 0px 0"
-              />
-            </FormControl>
-
-            <Button
-              mt={4}
-              onClick={() => setIsModalOpen(true)}
-              bgColor={"white"}
-              _hover={"white"}
+          borderWidth={"1px"}
+          borderColor={"gray.300"}
+          margin={"auto"}
+          borderRadius={"4%"}
+        >
+          <Box
+            w="100%"
+            h="420px"
+            // borderWidth="1px"
+            borderColor="gray.300"
+            borderRadius="4%"
+            // borderTop={"10%"}
+            borderBottomRadius={0}
+            padding={0}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            position="relative"
+          >
+            <label
+              htmlFor="file-banner"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                cursor: "pointer",
+              }}
             >
-              Select Category*
-            </Button>
-          </FormControl>
+              <Box
+                as="span"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                w="60px"
+                h="60px"
+                borderRadius="50%"
+                border={"2px"}
+                bg="transparent"
+                color="white"
+                marginBottom="8px"
+              >
+                <FaUpload size={25} />
+              </Box>
+            </label>
+            <Input
+              type="file"
+              id="file-banner"
+              accept="image/*"
+              display="none"
+              onChange={handleBannerUpload}
+              position="absolute"
+              top="0"
+              left="0"
+              width="100%"
+              height="100%"
+              opacity="0"
+              cursor="pointer"
+            />
+            <Image
+              src={Banner}
+              alt="Banner"
+              w="100%"
+              h="100%"
+              position="absolute"
+              zIndex="-1"
+              borderTop={"3%"}
+              borderRadius={"5%"}
+              borderBottomRadius={0}
+            />
+            <Text fontSize="24px" color="white">
+              Upload images/posters/banners
+            </Text>
+            <Text fontSize="15px" color="white">
+              Recommended 724 x 340px and no more than 2Mb
+            </Text>
+          </Box>
 
-          <Box w="100%" display={"flex"} flexDirection={"row"}>
+          <Box w="100%" p={4} paddingLeft={"65px"} paddingBottom={"40px"}>
             <FormControl>
-              <FormLabel>Hosted by</FormLabel>
-              <Box display="flex" alignItems="center">
-                <label
-                  htmlFor="file-upload"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    cursor: "pointer",
-                  }}
-                >
-                  <Box
-                    as="span"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    w="50px"
-                    h="50px"
-                    borderRadius="50%"
-                    bg="blue.200"
-                    color="white"
-                    marginRight="8px"
-                  >
-                    <FaUpload size={25} />
-                  </Box>
-                </label>
+              <FormControl>
                 <Input
-                  type="file"
-                  id="file-upload"
-                  accept="image/*"
-                  display="none"
-                  onChange={handleLogoUpload}
-                />
-                <Input
+                  focusBorderColor="transparent"
+                  outline={"none"}
+                  bg={"transparent"}
                   type="text"
-                  placeholder="Hosted by"
-                  value={hostedBy}
-                  onChange={(e) => setHostedBy(e.target.value)}
-                  fontSize={"15px"}
-                  bg="transparent"
-                  borderWidth="0 0 0px 0"
+                  placeholder="Event Name*"
+                  // fontSize={"25px"}
+                  fontSize={24}
+                  value={eventName}
+                  onChange={(e) => setEventName(e.target.value)}
+                  borderWidth="0 0 0 0"
                 />
-              </Box>
-            </FormControl>
-            <FormControl>
-              <FormLabel>Date & Time</FormLabel>
-              <Box display="flex" alignItems="center">
-                <BsCalendar2DateFill size={30} style={{ marginRight: "8px" }} />{" "}
-                <Button
-                  onClick={() => setIsDateTimeModalOpen(true)}
-                  bg={"white"}
-                  _hover={"white"}
-                >
-                  Select Date & Time
-                </Button>
-              </Box>
+              </FormControl>
+
+              <Button
+                mt={4}
+                onClick={() => setIsModalOpen(true)}
+                bgColor={"white"}
+                _hover={"white"}
+              >
+                Select Category*
+              </Button>
+              <Text mb={4}>{catEventPreview}</Text>
             </FormControl>
 
-            <FormControl>
-              <FormLabel>Location</FormLabel>
-              <Box display="flex" alignItems="center">
-                <FaLocationDot size={30} style={{ marginRight: "8px" }} />
-                <Button
-                  bg={"white"}
-                  _hover={"white"}
-                  onClick={() => setIsLocationModalOpen(true)}
-                >
-                  Select a Location
-                </Button>
-              </Box>
-            </FormControl>
+            <Box
+              display={{ base: "block", sm: "flex", md: "flex" }}
+              flexDirection={{ base: "column", sm: "column", md: "row" }}
+            >
+              <FormControl>
+                <FormLabel>Hosted by</FormLabel>
+                <Box display="flex" alignItems="center">
+                  <label
+                    htmlFor="file-upload"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <Box
+                      as="span"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                      w="50px"
+                      h="50px"
+                      borderRadius="50%"
+                      bg="gray.400"
+                      color="white"
+                      marginRight="8px"
+                    >
+                      <FaUpload size={25} />
+                    </Box>
+                  </label>
+                  <Input
+                    type="file"
+                    id="file-upload"
+                    accept="image/*"
+                    display="none"
+                    onChange={handleLogoUpload}
+                  />
+                  <Input
+                    type="text"
+                    focusBorderColor="transparent"
+                    placeholder="Hosted by"
+                    value={hostedBy}
+                    onChange={(e) => setHostedBy(e.target.value)}
+                    fontSize={"15px"}
+                    bg="transparent"
+                    borderWidth="0 0 0px 0"
+                  />
+                </Box>
+              </FormControl>
+              <FormControl>
+                <FormLabel>Date & Time</FormLabel>
+                <Box display="flex" alignItems="center">
+                  <BsCalendar2DateFill
+                    size={30}
+                    style={{ marginRight: "8px" }}
+                  />
+                  <Button
+                    onClick={() => setIsDateTimeModalOpen(true)}
+                    bg={"white"}
+                    _hover={"white"}
+                  >
+                    Select Date & Time
+                  </Button>
+                </Box>
+                {(
+                  <Box mb={4}>
+                    <Text>{datePreview}</Text>
+                    <Text>{timePreview}</Text>
+                  </Box>
+                )}
+              </FormControl>
 
+              <FormControl>
+                <FormLabel>Location</FormLabel>
+                <Box display="flex" alignItems="center">
+                  <FaLocationDot size={30} style={{ marginRight: "8px" }} />
+                  <Button
+                    bg={"white"}
+                    _hover={"white"}
+                    onClick={() => setIsLocationModalOpen(true)}
+                  >
+                    Select a Location
+                  </Button>
+                </Box>
+                  <Text>{locationPreview}</Text>
+              </FormControl>
+            </Box>
           </Box>
         </Box>
+        <Box
+          paddingTop={"25px"}
+          display={"flex"}
+          flexDirection={"column"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <Tabs
+            isLazy
+            onChange={handleTabChange}
+            alignItems="center"
+            w={{ base: "100%", sm: "100%", md: "100%" }}
+            display="flex"
+            flexDirection="column"
+          >
+            <TabList justifyContent="center" alignItems={"center"}>
+              <Tab
+                _selected={{
+                  borderBottom: "3px solid blue",
+                  paddingX: "100px",
+                  width: "300px",
+                }}
+              >
+                TICKET CATEGORY
+              </Tab>
+              <Tab
+                _selected={{
+                  borderBottom: "3px solid blue",
+                  paddingX: "100px",
+                  width: "300px",
+                }}
+              >
+                EVENT DESCRIPTION
+              </Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                <FormControl pb={0} w="100%" justifyContent={"center"}>
+                  <Button onClick={openPaidTicketModal}>Add Paid Ticket</Button>
+                  <Button onClick={openFreeTicketModal}>Add Free Ticket</Button>
+                </FormControl>
+              </TabPanel>
+              <TabPanel>
+                <FormControl pb={0} w="100%" justifyContent={"center"}>
+                  <Textarea
+                    placeholder="Event Description"
+                    value={eventDescription}
+                    onChange={(e) => setEventDescription(e.target.value)}
+                  />
+                </FormControl>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+
+          <Button colorScheme="blue" mt={6} onClick={handleCreateEvent}>
+            Create Event
+          </Button>
+
+          <Modal isOpen={isPaidTicketModalOpen} onClose={closePaidTicketModal}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Add Paid Ticket</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <FormControl>
+                  <Input
+                    placeholder="Ticket Name"
+                    value={ticketName}
+                    onChange={(e) => setTicketName(e.target.value)}
+                  />
+                  <Input
+                    placeholder="Quantity"
+                    value={ticketQuantity}
+                    onChange={(e) => setTicketQuantity(e.target.value)}
+                  />
+                  <Input
+                    placeholder="Price"
+                    value={ticketPrice}
+                    onChange={(e) => setTicketPrice(e.target.value)}
+                  />
+                </FormControl>
+              </ModalBody>
+              <ModalFooter>
+                <Button colorScheme="blue" mr={3} onClick={handleAddTicketPaid}>
+                  Save
+                </Button>
+                <Button onClick={closePaidTicketModal}>Cancel</Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+
+          <Modal isOpen={isFreeTicketModalOpen} onClose={closeFreeTicketModal}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Add Free Ticket</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <FormControl>
+                  <Input
+                    placeholder="Ticket Name"
+                    value={ticketName}
+                    onChange={(e) => setTicketName(e.target.value)}
+                  />
+                  <Input
+                    placeholder="Quantity"
+                    value={ticketQuantity}
+                    onChange={(e) => setTicketQuantity(e.target.value)}
+                  />
+                </FormControl>
+              </ModalBody>
+              <ModalFooter>
+                <Button colorScheme="blue" mr={3} onClick={handleAddTicketFree}>
+                  Save
+                </Button>
+                <Button onClick={closeFreeTicketModal}>Cancel</Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+        </Box>
       </Box>
-      <Box paddingTop={"25px"} display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"}>
-
-      <Tabs isLazy onChange={handleTabChange} alignItems="center" w="60%" display="flex" flexDirection="column">
-  <TabList gap={"100%"} justifyContent="center" alignItems="center">
-    <Tab>TICKET CATEGORY</Tab>
-    <Tab>EVENT DESCRIPTION</Tab>
-  </TabList>
-  <TabPanels>
-    <TabPanel>
-      <FormControl pb={4} w="60%" alignItems="center">
-        <RadioGroup value={ticketType} onChange={(value) => setTicketType(value)} justifyContent="center">
-          <HStack spacing="24px" alignItems="center">
-            <Radio value="free">
-              <Box display="flex" alignItems="center">
-                <HiOutlineTicket size={90} style={{ marginRight: '8px' }} />
-                <span style={{ display: 'flex', alignItems: 'center' }}>Free</span>
-              </Box>
-            </Radio>
-            <Radio value="paid">
-              <Box display="flex" alignItems="center">
-                <HiOutlineTicket size={90} style={{ marginRight: '8px' }} />
-                <span style={{ display: 'flex', alignItems: 'center' }}>Paid</span>
-              </Box>
-            </Radio>
-          </HStack>
-        </RadioGroup>
-      </FormControl>
-    </TabPanel>
-    <TabPanel>
-   
-    </TabPanel>
-  </TabPanels>
-</Tabs>
-      </Box>
-
-
-
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <ModalOverlay />
@@ -470,15 +722,30 @@ const CreateEvent = () => {
           <ModalBody>
             <FormControl>
               <FormLabel>Place Name</FormLabel>
-              <Input type="text" placeholder="Enter place name" />
+              <Input
+                type="text"
+                placeholder="Enter place name"
+                value={placeName}
+                onChange={(e) => setPlaceName(e.target.value)}
+              />
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Address</FormLabel>
-              <Input type="text" placeholder="Enter address" />
+              <Input
+                type="text"
+                placeholder="Enter address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>City</FormLabel>
-              <Input type="text" placeholder="Enter city" />
+              <Input
+                type="text"
+                placeholder="Enter city"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
             </FormControl>
           </ModalBody>
           <ModalFooter>
