@@ -23,7 +23,7 @@ const Navbar = () => {
           <i class="fa-solid fa-compass"></i>
           <h3>Explore</h3>
         </div>
-        <ButtonOutline buttonText="Sign up" onClick={() => navigate("/signup")} />
+        <ButtonOutline buttonText="Sign up" onClick={() => navigate("/choose-role")} />
         <ButtonPrimary buttonText="Sign in" onClick={() => navigate("/signin")} />
       </div>
     </div>

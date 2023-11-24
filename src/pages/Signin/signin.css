@@ -6,8 +6,7 @@
   flex-direction: column;
 }
 
-
-#logo-div{
+#logo-div {
   width: 100%;
   height: 50px;
   display: flex;
@@ -16,23 +15,29 @@
   margin-top: 30px;
 }
 
-#logoEv{
+#logoEv {
   height: 30px;
   cursor: pointer;
 }
 
-#container-b{
+#container-b {
   max-width: 1272px;
   height: 100vh;
   display: flex;
   align-items: center;
 }
 
-#logo-vector{
+#logo-vector {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+#place-b > input:focus{
+  outline: none;
+  background-color:rgba(173, 216, 230, 0.3);
 }
 
 #image-section-b {
@@ -49,14 +54,15 @@
   flex-direction: column;
   height: 600px;
   margin-top: 10px;
+
 }
 
-#place-b{
+#place-b {
   width: 100%;
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0px 0px 10px 2px rgba(128, 128, 128, 0.2); 
-  margin-bottom: 40px;
+  box-shadow: 0px 0px 10px 2px rgba(128, 128, 128, 0.2);
+  margin-bottom: 20px;
 }
 
 #form-section img {
@@ -67,6 +73,7 @@
 #form-section h1 {
   font-size: 38px;
   margin-bottom: 30px;
+  font-weight: bold;
 }
 
 #form-section input {
@@ -80,7 +87,7 @@
   border: solid 1px rgba(128, 128, 128, 0.168);
 }
 
-#form-section button {
+.btn-form{
   width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -91,64 +98,82 @@
   border-radius: 10px;
 }
 
-#logoEg{
+#logoEg {
   display: none;
 }
 
-@media screen and (max-width:1000px){
+.induk-btn{
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  width: 100%;
+}
 
-  #image-section-b{
+@media screen and (max-width: 1000px) {
+  #image-section-b {
     display: none;
-
   }
 
-  #form-section{
+  #form-section {
     width: 500px;
   }
 
-  #place-b{
+  #place-b {
     width: 500px;
   }
 }
 
-@media screen and (max-width:500px){
-  #form-section{
-    width: 200px ;
-    margin-top: 70px;
+@media screen and (max-width: 500px) {
+  #form-section {
+    width: 200px;
   }
-  #place-b{
+  #image-section-b{
+width: 100%;
+  }
+  #place-b {
     width: 350px;
     background-color: white;
-
   }
 
-  #form-section h1{
+  #form-section h1 {
     font-size: 23px;
   }
 
-  #logoEv{
+  #logoEv {
     display: none;
   }
 
-  #logo-div{
-  background-color: rgb(0, 53, 106);
+  #form-section input {
+    font-size: 13px;
+  }
+  
+
+
+  #logo-div {
+    background-color: rgb(0, 53, 106);
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     margin-top: 0px;
-    height:250px;
+    height: 250px;
     position: absolute;
     z-index: -5;
   }
 
-  #logoEg{
+  #logoEg {
     display: block;
     font-size: 20px;
-  height: 28px;
-  margin-bottom: 100px;
+    height: 28px;
+    margin-bottom: 100px;
   }
 
-  .makesure{
+
+  .induk-btn{
+    width: 350px;
+    height: 50px;
+  }
+
+  .makesure {
     font-size: 12px;
   }
-
 }
+
