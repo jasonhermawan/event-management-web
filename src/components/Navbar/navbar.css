@@ -19,6 +19,9 @@
   align-items: center;
   gap: 20px;
 }
+.logo{
+  height: 30px;
+}
 
 #search-input-section {
   width: 100%;
