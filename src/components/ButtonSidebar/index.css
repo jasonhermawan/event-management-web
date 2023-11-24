@@ -1,0 +1,7 @@
+.nav{
+    transition: all ease 0.3s;
+}
+.nav:hover{
+transform: translateX(10px);
+}
+

@@ -1,0 +1,30 @@
+.gray{
+    transition: all ease 0.2s;
+}
+
+.gray:hover{
+transform:translateY(-2%);
+}
+
+.blue{
+    transition: all ease 0.2s;
+}
+
+.blue:hover{
+    transform:translateY(-2%)
+}
+
+.left{
+    transition: all ease 0.2s;
+}
+
+.right{
+    transition: all ease 0.2s;
+}
+
+.left:hover{
+    transform: scale(105%);
+}
+.right:hover{
+    transform: scale(105%);
+}
