@@ -1,0 +1,17 @@
+.explore-dropdown { 
+  font-size: 18px;
+  font-weight: 500;
+  padding: 12px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(177, 177, 177, 0.155);
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.explore-dropdown:hover {
+  background-color: transparent;
+  border: solid 1px #007aff;
+  color: #007aff;
+}

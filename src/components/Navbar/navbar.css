@@ -9,6 +9,10 @@
   padding-right: 100px;
 }
 
+.logo {
+  height:30px;
+}
+
 #left-nav {
   width: 55%;
   display: flex;
@@ -16,20 +20,37 @@
   gap: 20px;
 }
 
+#search-input-section {
+  width: 100%;
+  position: relative;
+}
+
+#search-input-result {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.136);
+  padding: 10px;
+}
+
 #left-nav input {
-  height: 40px;
+  height: 50px;
   width: 100%;
   padding: 15px 20px;
   background-color: rgb(0, 53, 106);
+  color: white;
   border: none;
   border-radius: 5px;
+  outline: none;
 }
 
 #left-nav input::placeholder {
   color: rgb(222, 222, 222);
 }
 
-#right-nav {
+#right-nav #desktop-nav{
   display: flex;
   gap: 25px;
   align-items: center;
@@ -47,9 +68,91 @@
   font-size: 16px;
 }
 
+#mobile-nav {
+  display: none;
+}
+
+#mobile-menu {
+  display: none;
+}
+
 @media screen and (max-width: 1620px) {
   #navbar {
     padding-left: 50px;
     padding-right: 50px;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  #navbar {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .nav-search {
+    display: none;
+  }
+
+  #right-nav #desktop-nav {
+    display: none;
+  }
+
+  #mobile-nav {
+    display: block;
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+  }
+
+  #mobile-menu {
+    z-index: 1000;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgba(255, 255, 255, 0.789);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 15px;
+  }
+
+  .mobile-menu-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+    color: gray;
+  }
+
+  .mobile-menu-item h3{
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  #navbar {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .logo {
+    height: 25px;
   }
 }

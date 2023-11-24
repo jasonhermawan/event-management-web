@@ -1,14 +1,14 @@
 import React from 'react'
-import './eventCard.css'
+import './cardExplore.css'
 import { useNavigate } from 'react-router-dom'
 
-const EventCard = (props) => {
+const EventCardExplore = (props) => {
   const navigate = useNavigate()
 
   return (
-    <div id="card-container">
+    <div id="card-container-explore">
       <div id='card' onClick={props.onclick}>
-        <img src={props.eventImage} alt={props.eventTitle} width="100%"/>
+        <img src={props.eventImage} alt={props.eventTitle}/>
         <div id="card-details">
           <h1 id='title'>{props.eventTitle}</h1>
           <h3 id='date'>{props.eventDate}</h3>
@@ -21,4 +21,4 @@ const EventCard = (props) => {
   )
 }
 
-export default EventCard
+export default EventCardExplore

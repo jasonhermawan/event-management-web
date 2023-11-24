@@ -1,22 +1,36 @@
-.layouting {
-  margin: auto;
-  padding-left: 100px;
-  padding-right: 100px;
-}
-
 .image-slider img{
   border-radius: 20px;
   margin-bottom: 50px;
 }
 
+.image-banner img{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 20px;
+}
+
+.landing-events-list {
+  margin-top: 50px;
+}
+
+.landing-events-list h1 {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 32px;
+}
+
 #top-choice h1 {
   margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 32px;
 }
 
 .event-cards {
   display: flex;
-  gap: 20px;
-  justify-content: space-between;
+  max-width: 1272px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: hidden;
 }
 
 #category-section {
@@ -25,10 +39,134 @@
   justify-content: space-between;
 }
 
-@media screen and (max-width: 1620px) {
-  .layouting {
-    margin: auto;
-    padding-left: 50px;
-    padding-right: 50px;
+#most-popular {
+  padding-top: 35px;
+  padding-bottom: 35px;
+  margin-top: 50px;
+  background-color: rgba(0, 40, 85, 1);
+}
+
+#most-popular h1 {
+  color: white;
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+#promotor-card-section h1 {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+#promotor-card-section #card-container {
+  min-width: 100%;
+  max-width: 100%;
+  overflow: auto;
+  background: linear-gradient(180deg, white, rgba(236, 236, 236, 0.378), white);
+  border-radius: 10px;
+  display: flex;
+  gap: 20px;
+  padding: 0px;
+}
+
+#explore-more-btn{
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+#explore-more-btn button {
+  padding: 8px 15px;
+  background-color: transparent;
+  border: solid 1px #007aff;
+  border-radius: 10px;
+  color: #007aff;
+  font-weight: 600;
+  transition: all ease 0.3s;
+}
+
+#explore-more-btn button:hover {
+  background-color: rgba(238, 238, 238, 0.328);
+}
+
+.popular-events {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.event-select-filter {
+  color: #0049cc;
+}
+
+.event-select-filter .option-title {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  position: relative;
+}
+
+.event-select-filter .option-title i {
+  font-size: 32px;
+}
+
+.dropdown-section {
+  color: black;
+  position: absolute;
+  background-color: white;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(214, 214, 214, 0.427);
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.dropdown-section input{
+  border: solid 1px rgba(128, 128, 128, 0.313);
+  width: 100%;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 850px) {
+
+  .popular-events {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .image-slider img{
+    border-radius: 10px;
+    margin-bottom: 50px;
+  }
+
+  #top-choice h1 {
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 28px;
+  }
+
+  .event-cards {
+    overflow-x: scroll;
+  }
+
+  #most-popular h1 {
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 28px;
+  }
+
+  .landing-events-list h1 {
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 28px;
   }
 }

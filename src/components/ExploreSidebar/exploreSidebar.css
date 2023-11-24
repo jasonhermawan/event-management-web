@@ -1,0 +1,75 @@
+#explore-bar {
+  background-color: white;
+  border-right: solid 1px gray;
+  padding: 10px;
+  padding-right: 30px;
+  width: 100%;
+  height: 100vh;
+}
+
+.sidebar-divider-top {
+  border-top: solid 1px gray;
+  margin-top: 18px;
+}
+
+.sidebar-divider {
+  border-top: solid 1px gray;
+  margin-top: 40px;
+}
+
+#filtering-section {
+  margin-top: 20px;
+}
+
+.sidebar-filter-item {
+  margin-top: 40px;
+}
+
+#explore-bar h1 {
+  padding-top: 50px;
+  font-weight: 700;
+  font-size: 26px;
+}
+
+.dropdown-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-title i {
+  font-size: 30px;
+}
+
+.dropdown-title h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.filter-result {
+  margin-top: 20px;
+}
+
+.filter-selected {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(177, 177, 177, 0.155);
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all ease 0.3s;
+}
+
+.filter-selected h3 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.filter-selected i {
+  font-size: 26px;
+  color: #007aff;
+}

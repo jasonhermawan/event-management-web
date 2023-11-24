@@ -1,0 +1,45 @@
+#promotor-card {
+  text-align: center;
+  min-width: 200px;
+  min-height: 250px;
+  max-width: 200px;
+  max-height: 250px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.top-promotor-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top-promotor-card h2 {
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.top-promotor-card p {
+  font-weight: 500;
+  font-size: 14px;
+  color: gray;
+}
+
+.bottom-promotor-card button{
+  padding: 8px 15px;
+  background-color: transparent;
+  border: solid 1px #007aff;
+  border-radius: 10px;
+  color: #007aff;
+  font-weight: 600;
+  transition: all ease 0.3s;
+}
+
+.bottom-promotor-card button:hover {
+  background-color: rgba(238, 238, 238, 0.328);
+}
