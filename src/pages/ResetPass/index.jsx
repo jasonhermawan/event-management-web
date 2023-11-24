@@ -14,7 +14,7 @@ const ResetPass = () => {
 
   const onReset = async () => {
     try {
-      await axios.patch(`${import.meta.env.VITE_API_URL}/account/reset/pass`, {
+      await axios.patch(`${import.meta.env.VITE_API_URL}/accounts/reset/pass`, {
         password: newPassword,
         confirmPassword,
       }, {

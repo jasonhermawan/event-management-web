@@ -31,7 +31,7 @@ const Signup = () => {
                  confirmPassword: passwordConfirmation,
                  role: "user",
                };
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/account/register`, userData);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/accounts/register`, userData);
   
       const { success, message } = response.data;
   
@@ -91,8 +91,8 @@ const Signup = () => {
   return (
     <div id="signup-page-s">
       <div id="logo-div-s">
-        <img id="logoEv-s" src={Logo} alt="LogoEventclick" />
-        <img id="logoEg-s" src={LogoWhite} alt="LogoEventclick" />
+        <img id="logoEv-s" src={Logo} alt="LogoEventclick" onClick={() => navigate("/")}/>
+        <img id="logoEg-s" src={LogoWhite} alt="LogoEventclick" onClick={() => navigate("/")}/>
       </div>
 
       <div id="container-b-s">

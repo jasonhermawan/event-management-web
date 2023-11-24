@@ -8,6 +8,63 @@ import SearchCard from '../SearchCard'
 import axios from 'axios'
 
 const Navbar = () => {
+  const token = localStorage.getItem("TOKEN");
+  const [role, setRole] = useState("");
+
+  const getRole = async () => {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/accounts/role`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    console.log("role", response);
+    setRole(response.data.role)
+  }
+
+  useEffect(() => {
+    getRole();
+  }, [])
+
+  const printRightNavRole = () => {
+    if (role === "user" || role === "promotor") {
+      return (
+        <div id="desktop-nav">
+            <div className="nav-menu" onClick={() => navigate("/create-event")} style={{cursor: "pointer"}}>
+              <i class="fa-solid fa-calendar-plus"></i>
+              <h3>Create Event</h3>
+            </div>
+            <div className="nav-menu" onClick={() => navigate("/explore")} style={{cursor: "pointer"}}>
+              <i class="fa-solid fa-compass"></i>
+              <h3>Explore</h3>
+            </div>
+            <div className="nav-menu" onClick={() => navigate("/profile-user/my-ticket")} style={{cursor: "pointer"}}>
+              <i class='bx bxs-user' ></i>
+              <h3>Account</h3>
+            </div>
+        </div>
+      )
+    } else {
+      return (
+        <div id="desktop-nav">
+            <div className="nav-menu" onClick={() => navigate("/create-event")} style={{cursor: "pointer"}}>
+              <i class="fa-solid fa-calendar-plus"></i>
+              <h3>Create Event</h3>
+            </div>
+            <div className="nav-menu" onClick={() => navigate("/explore")} style={{cursor: "pointer"}}>
+              <i class="fa-solid fa-compass"></i>
+              <h3>Explore</h3>
+            </div>
+            <ButtonOutline buttonText="Sign up" onClick={() => navigate("/choose-role")} />
+            <ButtonPrimary buttonText="Sign in" onClick={() => navigate("/signin")} />
+          </div>
+      )
+    }
+  }
+
+  useEffect(() => {
+    printRightNavRole()
+  }, [])
+
   const [searchInput, setSearchInput] = useState("")
   const [dataEvents, setDataEvents] = useState([])
 
@@ -62,18 +119,7 @@ const Navbar = () => {
         </div>
       </div>
       <div id="right-nav">
-        <div id="desktop-nav">
-          <div className="nav-menu" onClick={() => navigate("/create-event")} style={{cursor: "pointer"}}>
-            <i class="fa-solid fa-calendar-plus"></i>
-            <h3>Create Event</h3>
-          </div>
-          <div className="nav-menu" onClick={() => navigate("/explore")} style={{cursor: "pointer"}}>
-            <i class="fa-solid fa-compass"></i>
-            <h3>Explore</h3>
-          </div>
-          <ButtonOutline buttonText="Sign up" onClick={() => navigate("/signup")} />
-          <ButtonPrimary buttonText="Sign in" onClick={() => navigate("/signin")} />
-        </div>
+        {printRightNavRole()}
         <div id="mobile-nav">
           <div className="menu-toggle">
             <span></span>

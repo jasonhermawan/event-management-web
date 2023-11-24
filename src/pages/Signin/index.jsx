@@ -19,7 +19,7 @@ const Signin = () => {
   const loginUser = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/account/login`,
+        `${import.meta.env.VITE_API_URL}/accounts/login`,
         {
           email,
           password,
@@ -31,6 +31,7 @@ const Signin = () => {
       if (response.data.result.role === "user") {
         navigate("/");
       } else {
+        // SEMENTARA
         navigate("/profile-user/my-ticket");
       }
     } catch (error) {
@@ -64,8 +65,8 @@ const Signin = () => {
   return (
     <div id="signin-page">
       <div id="logo-div">
-        <img id="logoEv" src={Logo} alt="LogoEventclick" />
-        <img id="logoEg" src={LogoWhite} alt="LogoEventclick" />
+        <img id="logoEv" src={Logo} alt="LogoEventclick" onClick={() => navigate("/")}/>
+        <img id="logoEg" src={LogoWhite} alt="LogoEventclick" onClick={() => navigate("/")}/>
       </div>
 
       <div id="container-b">

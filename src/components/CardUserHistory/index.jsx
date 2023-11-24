@@ -23,6 +23,8 @@ export default function CardHistoryUser(props) {
       boxShadow={"0px 3px 10px 1px rgba(0,0,0,0.1)"}
       display={"flex"}
       flexDirection={"column"}
+      mt={"5"}
+      mb={"10"}
     >
       <Box
         w={"100%"}
@@ -36,7 +38,7 @@ export default function CardHistoryUser(props) {
         p={"0px 50px"}
       >
         <Box
-          w={"100px"}
+          w={"130px"}
           opacity={"0.5"}
           borderRadius={"5px"}
           display={"flex"}
