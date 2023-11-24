@@ -1,33 +1,43 @@
+import "./App.css";
 import { useState } from 'react'
-import './App.css'
-import {Route, Routes} from 'react-router-dom'
-import LandingPage from '../src/pages/Landing'
-import EventPage from '../src/pages/EventPage'
-import Signup from './pages/Signup'
-import Signin from './pages/Signin'
-import CreateEvent from './pages/CreateEvent'
-import Explore from './pages/Explore'
-import Checkout from './pages/Checkout'
+import { Route, Routes } from "react-router-dom";
+import LandingPage from "../src/pages/Landing";
+import EventPage from "../src/pages/EventPage";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
+import CreateEvent from "./pages/CreateEvent";
+import Explore from "./pages/Explore";
+import Checkout from "./pages/Checkout";
+import MyTicketPage from "./pages/ProfileUser/MyTiketPage";
+import ChooseRole from "./pages/ChooseRole";
+import SignupPromotor from "./pages/SignupPromotor";
+import ResetPass from "./pages/ResetPass";
+import ForgotPass from "./pages/ForgotPass";
 import PromotorPage from './pages/PromotorPage'
 import ScrollToTop from './components/ScrollToTop'
 
-function App() {
 
+function App() {
   return (
-   <div>
-    <ScrollToTop />
-    <Routes>
-      <Route path='/' element={<LandingPage />}/>
-      <Route path='/signup' element={<Signup />}/>
-      <Route path='/signin' element={<Signin />}/>
-      <Route path='/explore' element={<Explore />}/>
-      <Route path='/event/:eventname/:eventid' element={<EventPage />}/>
-      <Route path='/checkout' element={<Checkout />}/>
-      <Route path='/create-event' element={<CreateEvent />}/>
-      <Route path='/promotor' element={<PromotorPage />}/>
-    </Routes>
-   </div>
-  )
+      <div>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/choose-role" element={<ChooseRole/>} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup-promotor" element={<SignupPromotor />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/profile-user/my-ticket" element={<MyTicketPage />} />
+          <Route path='/event/:eventname/:eventid' element={<EventPage />}/>
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/create-event" element={<CreateEvent />} />
+          <Route path="/forgot-password" element={<ForgotPass />} />
+          <Route path="/reset-password" element={<ResetPass/>} />
+          <Route path='/promotor' element={<PromotorPage />}/>
+        </Routes>
+      </div>
+  );
 }
 
-export default App
+export default App;
