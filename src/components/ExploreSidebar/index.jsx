@@ -1,63 +1,88 @@
 import React, { useEffect, useState } from "react";
 import "./exploreSidebar.css";
 import ExploreDropdown from "../ExploreDropdown";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 
 const ExploreSidebar = (props) => {
   const search = useLocation().search;
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [locationClick, setLocationClick] = useState(false);
   const [locationResult, setLocationResult] = useState("");
+  const [locationList, setLocationList] = useState([])
+  const [selectedLocationName, setSelectedLocationName] = useState("")
+
   const [dateClick, setDateClick] = useState(false);
   const [dateResult, setDateResult] = useState("");
+
   const [formatClick, setFormatClick] = useState(false);
   const [formatResult, setFormatResult] = useState("");
-  const [formatList, setFormatList] = useState([])
+  const [formatList, setFormatList] = useState([]);
+  const [selectedFormatName, setSelectedFormatName] = useState("")
+
   const [topicClick, setTopicClick] = useState(false);
   const [topicResult, setTopicResult] = useState("");
-  const [topicList, setTopicList] = useState([])
-  const navigate = useNavigate();
+  const [topicList, setTopicList] = useState([]);
+  const [selectedTopicName, setSelectedTopicName] = useState("")
+
+  const getLocationList = async () => {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/cities`);
+    setLocationList(response.data)
+  }
+
+  const getFormatList = async () => {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/formats`);
+    setFormatList(response.data);
+  };
+
+  const getTopicList = async () => {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/topics`);
+    setTopicList(response.data);
+  };
+
+  useEffect(() => {
+    getLocationList();
+    getFormatList();
+    getTopicList();
+  }, []);
 
   const printDropdownLocation = () => {
-    return (
-      <div className="filter-result">
-        <ExploreDropdown
-          onclick={() => {
-            navigate(`/explore?city=surabaya`);
-            setLocationClick(false);
-            setLocationResult("Surabaya");
-          }}
-          text="Surabaya"
-        />
-        <ExploreDropdown
-          onclick={() => {
-            navigate("/explore?city=jakarta");
-            setLocationClick(false);
-            setLocationResult("Jakarta");
-          }}
-          text="Jakarta"
-        />
-        <ExploreDropdown
-          onclick={() => {
-            navigate("/explore?city=bali");
-            setLocationClick(false);
-            setLocationResult("Bali");
-          }}
-          text="Bali"
-        />
-      </div>
-    );
+    return locationList.map((val) => {
+      return (
+        <div className="filter-result">
+          <ExploreDropdown
+            onclick={() => {
+              setLocationClick(false);
+              setLocationResult(`${val.city}`);
+              {!search ? navigate(`/explore?cityid=${val.id}`) : navigate(`/explore${search}&cityid=${val.id}`)}
+            }}
+            text={val.city}
+          />
+        </div>
+      );
+    });
   };
+
+  const getLocationName = async () => {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/cities?id=${searchParams.get("cityid")}`)
+    setSelectedLocationName(response.data[0].city)
+  }
+
+  useEffect(() => {
+    getLocationName()
+  }, [search])
 
   const printLocationResult = () => {
     return (
       <div className="filter-selected">
-        <h3>{locationResult}</h3>
+        <h3>{selectedLocationName}</h3>
         <i
           class="bx bx-x"
           onClick={() => {
             setLocationResult("");
-            navigate("/explore?");
+            searchParams.delete("cityid");setSearchParams(searchParams);
           }}
         ></i>
       </div>
@@ -110,47 +135,41 @@ const ExploreSidebar = (props) => {
     );
   };
 
-  const getFormatList = async () => {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/formats`)
-    setFormatList(response.data)
-  }
-
-  const getTopicList = async () => {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/topics`)
-    setTopicList(response.data)
-  }
-
-  useEffect(() => {
-    getFormatList()
-    getTopicList()
-  }, [])
-
   const printDropdownFormat = () => {
     return formatList.map((val) => {
       return (
         <div className="filter-result">
           <ExploreDropdown
-          onclick={() => {
-            navigate(`/explore?formatid=${val.id}`);
-            setFormatClick(false);
-            setFormatResult(`${val.format}`);
-          }}
-          text={val.format}
-        />
+            onclick={() => {
+              setFormatClick(false);
+              setFormatResult(`${val.format}`);
+              {!search ? navigate(`/explore?formatid=${val.id}`) : navigate(`/explore${search}&formatid=${val.id}`)}
+            }}
+            text={val.format}
+          />
         </div>
-      )
-    })
+      );
+    });
   };
+
+  const getFormatName = async () => {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/formats?id=${searchParams.get("formatid")}`)
+    setSelectedFormatName(response.data[0].format)
+  }
+
+  useEffect(() => {
+    getFormatName()
+  }, [search])
 
   const printFormatResult = () => {
     return (
       <div className="filter-selected">
-        <h3>{formatResult}</h3>
+        <h3>{selectedFormatName}</h3>
         <i
           class="bx bx-x"
           onClick={() => {
             setFormatResult("");
-            navigate("/explore?");
+            searchParams.delete("formatid");setSearchParams(searchParams);
           }}
         ></i>
       </div>
@@ -162,33 +181,42 @@ const ExploreSidebar = (props) => {
       return (
         <div className="filter-result">
           <ExploreDropdown
-          onclick={() => {
-            navigate(`/explore?topicid=${val.id}`);
-            setTopicClick(false);
-            setTopicResult(`${val.topic}`);
-          }}
-          text={val.topic}
-        />
+            onclick={() => {
+              setTopicClick(false);
+              setTopicResult(`${val.topic}`);
+              {!search ? navigate(`/explore?topicid=${val.id}`) : navigate(`/explore${search}&topicid=${val.id}`)}
+            }}
+            text={val.topic}
+          />
         </div>
-      )
-    })
+      );
+    });
   };
+
+  const getTopicName = async () => {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/topics?id=${searchParams.get("topicid")}`)
+    setSelectedTopicName(response.data[0].topic)
+  }
+
+  useEffect(() => {
+    getTopicName()
+  }, [search])
 
   const printTopicResult = () => {
     return (
       <div className="filter-selected">
-        <h3>{topicResult}</h3>
+        <h3>{selectedTopicName}</h3>
         <i
           class="bx bx-x"
           onClick={() => {
             setTopicResult("");
-            navigate("/explore?");
+            searchParams.delete("topicid");setSearchParams(searchParams);
           }}
         ></i>
       </div>
     );
   };
-
+ 
   return (
     <div id="explore-bar">
       <h1>Filter Event</h1>
@@ -199,7 +227,7 @@ const ExploreSidebar = (props) => {
             <h3 style={locationClick ? { color: "black" } : { color: "black" }}>
               Location
             </h3>
-            {locationResult ? (
+            {search.includes("cityid=") ? (
               ""
             ) : (
               <i
@@ -209,7 +237,7 @@ const ExploreSidebar = (props) => {
             )}
           </div>
           {locationClick && !locationResult ? printDropdownLocation() : ""}
-          {locationResult ? printLocationResult() : ""}
+          {search.includes("cityid=") ? printLocationResult() : ""}
         </div>
 
         <div className="sidebar-filter-item">
@@ -227,7 +255,7 @@ const ExploreSidebar = (props) => {
             )}
           </div>
           {dateClick && !dateResult ? printDropdownDate() : ""}
-          {dateResult ? printDateResult() : ""}
+          {search.includes("date=") ? printDateResult() : ""}
         </div>
 
         <hr className="sidebar-divider" />
@@ -237,7 +265,7 @@ const ExploreSidebar = (props) => {
             <h3 style={formatClick ? { color: "black" } : { color: "black" }}>
               Format
             </h3>
-            {formatResult ? (
+            {search.includes("formatid=") ? (
               ""
             ) : (
               <i
@@ -247,16 +275,25 @@ const ExploreSidebar = (props) => {
             )}
           </div>
           {formatClick && !formatResult ? printDropdownFormat() : ""}
-          {formatResult ? printFormatResult() : ""}
+          {search.includes("formatid=") ? printFormatResult() : ""}
         </div>
 
         <div className="sidebar-filter-item">
           <div className="dropdown-title">
-            <h3 style={topicClick ? { color: "black" } : { color: "black" }}>Topic</h3>
-            <i class="bx bx-chevron-down" onClick={() => setTopicClick(!topicClick)}></i>
+            <h3 style={topicClick ? { color: "black" } : { color: "black" }}>
+              Topic
+            </h3>
+            {search.includes("topicid=") ? (
+              ""
+            ) : (
+              <i
+                class="bx bx-chevron-down"
+                onClick={() => setTopicClick(!topicClick)}
+              ></i>
+            )}
           </div>
           {topicClick && !topicResult ? printDropdownTopic() : ""}
-          {topicResult ? printTopicResult() : ""}
+          {search.includes("topicid=") ? printTopicResult() : ""}
         </div>
       </div>
     </div>

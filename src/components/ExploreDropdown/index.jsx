@@ -4,7 +4,7 @@ import './exploreDropdown.css'
 const ExploreDropdown = (props) => {
   return (
     <div onClick={props.onclick} className='explore-dropdown'>
-      {props.text}
+      <p>{props.text}</p>
     </div>
   )
 }

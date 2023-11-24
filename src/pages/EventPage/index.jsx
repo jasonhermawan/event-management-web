@@ -54,8 +54,8 @@ const EventPage = () => {
           }}
           eventImage={val.banner}
           eventTitle={val.name}
-          eventDate={val.date}
-          eventPrice={val.price}
+          eventDate={(val.date).slice(0, 10)}
+          eventPrice={`Rp ${(val.price).toLocaleString("id")}`}
           promotor={val.account.username}
         />
       );

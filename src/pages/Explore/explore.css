@@ -55,6 +55,16 @@
   }
 }
 
+@media screen and (max-width: 1260px) {
+  #explore-sidebar {
+    display: none;
+  }
+
+  #explore-content {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 550px) {
   #explore-navbar {
     display: flex;

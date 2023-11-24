@@ -10,47 +10,49 @@ import LandingDropdown from '../../components/LandingDropdown'
 
 const LandingPage = () => {
   const navigate = useNavigate()
+  const [cityList, setCityList] = useState([]);
   const [eventList, setEventList] = useState([])
   const [eventEntertainment, setEventEntertainment] = useState([]);
   const [eventEducation, setEventEducation] = useState([]);
   const [eventListByCity, setEventListByCity] = useState([]);
   const [dropdown, setDropdown] = useState(false);
-  const [selectedCity, setSelectedCity] = useState("Surabaya")
+  const [selectedCity, setSelectedCity] = useState(1)
+  const [selectedCityName, setSelectedCityName] = useState("")
 
-  const getEvent = () => {
-    axios.get(`${import.meta.env.VITE_API_URL}/events`)
-    .then((res)=>{
-      setEventList(res.data)
-    }).catch((err)=>{
-      console.log(err);
-    })
+  const getEvent = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/events`)
+      setEventList(response.data)
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  const getEventByCity = () => {
-    axios.get(`${import.meta.env.VITE_API_URL}/events?city=${selectedCity.toLowerCase()}`)
-    .then((res)=>{
-      setEventListByCity(res.data)
-    }).catch((err)=>{
-      console.log(err);
-    })
+  const getEventByCity = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/events?cityid=${selectedCity}`)
+      setEventListByCity(response.data)
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  const getEventEntertainment = () => {
-    axios.get(`${import.meta.env.VITE_API_URL}/events?topicid=2`)
-    .then((res) => {
-      setEventEntertainment(res.data);
-    }).catch((err) => {
-      console.log(err);
-    })
+  const getEventEntertainment = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/events?topicid=2`)
+      setEventEntertainment(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  const getEventEducation = () => {
-    axios.get(`${import.meta.env.VITE_API_URL}/events?topicid=3`)
-    .then((res) => {
-      setEventEducation(res.data);
-    }).catch((err) => {
-      console.log(err);
-    })
+  const getEventEducation = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/events?topicid=3`)
+      setEventEducation(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 
@@ -61,6 +63,15 @@ const LandingPage = () => {
     getEventByCity()
   },[])
 
+  const getCityName = async () => {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/cities?id=${selectedCity}`)
+    setSelectedCityName(response.data[0].city)
+  }
+
+  useEffect(() => {
+    getCityName()
+  }, [getEventByCity])
+
   const printEventList = () => {
     return eventList.map((val)=>{
       return(
@@ -68,8 +79,8 @@ const LandingPage = () => {
           onclick={() => navigate(`/event/${val.name}/${val.id}`)}
           eventImage={val.banner}
           eventTitle={val.name}
-          eventDate={val.date}
-          eventPrice={val.price}
+          eventDate={(val.date).slice(0, 10)}
+          eventPrice={`Rp ${(val.price).toLocaleString("id")}`}
           promotor={val.account.username}
         />
       )
@@ -83,8 +94,8 @@ const LandingPage = () => {
           onclick={() => navigate(`/event/${val.name}/${val.id}`)}
           eventImage={val.banner}
           eventTitle={val.name}
-          eventDate={val.date}
-          eventPrice={val.price}
+          eventDate={(val.date).slice(0, 10)}
+          eventPrice={`Rp ${(val.price).toLocaleString("id")}`}
           promotor={val.account.username}
         />
       )
@@ -98,8 +109,8 @@ const LandingPage = () => {
           onclick={() => navigate(`/event/${val.name}/${val.id}`)} 
           eventImage={val.banner}
           eventTitle={val.name}
-          eventDate={val.date}
-          eventPrice={val.price}
+          eventDate={(val.date).slice(0, 10)}
+          eventPrice={`Rp ${(val.price).toLocaleString("id")}`}
           promotor={val.account.username}
         />
       )
@@ -113,8 +124,8 @@ const LandingPage = () => {
           onclick={() => navigate(`/event/${val.name}/${val.id}`)}
           eventImage={val.banner}
           eventTitle={val.name}
-          eventDate={val.date}
-          eventPrice={val.price}
+          eventDate={(val.date).slice(0, 10)}
+          eventPrice={`Rp ${(val.price).toLocaleString("id")}`}
           promotor={val.account.username}
         />
       )
@@ -132,30 +143,27 @@ const LandingPage = () => {
     })
   }
 
+  const getCityList = async () => {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/cities`);
+    setCityList(response.data)
+  }
+
+  useEffect(() => {
+    getCityList();
+  }, [])
+
   const printCityDropdown = () => {
-    if (dropdown) {
-      return (
-        <div className='dropdown-section'>
-          <input type="text" placeholder="Search City"/>
-          <LandingDropdown 
-            onclick={() => {setSelectedCity("Surabaya"); setDropdown(!dropdown)}}
-            cityname="Surabaya"
-          />
-          <LandingDropdown 
-            onclick={() => {setSelectedCity("Jakarta"); setDropdown(!dropdown)}}
-            cityname="Jakarta"
-          />
-          <LandingDropdown 
-            onclick={() => {setSelectedCity("Bali"); setDropdown(!dropdown)}}
-            cityname="Bali"
-          />
-          <LandingDropdown 
-            onclick={() => {setSelectedCity("Bandung"); setDropdown(!dropdown)}}
-            cityname="Bandung"
-          />
-        </div>
-      )
-    }
+      return cityList.map((value) => {
+        if (dropdown) {
+          return (
+            <LandingDropdown 
+              onclick={() => {setSelectedCity(value.id); setDropdown(!dropdown)}}
+              cityname={value.city}
+            />
+          )
+        }
+      })
+    
   }
 
   useEffect(() => {
@@ -165,8 +173,11 @@ const LandingPage = () => {
   const printCityOption = () => {
     return (
       <div style={{display:"inline-block"}}>
-        <div className="option-title" onClick={() => setDropdown(!dropdown)}>{selectedCity} {dropdown ? <i class='bx bxs-chevron-up' ></i> : <i class='bx bxs-chevron-down' ></i>}</div>
-        {printCityDropdown()}
+        <div className="option-title" onClick={() => setDropdown(!dropdown)}>{selectedCityName} {dropdown ? <i class='bx bxs-chevron-up' ></i> : <i class='bx bxs-chevron-down' ></i>}</div>
+        {dropdown ? <div className="dropdown-section">
+          <input placeholder='Search city' />
+          {printCityDropdown()}
+        </div> : ""}
       </div>
     )
   }
@@ -176,7 +187,7 @@ const LandingPage = () => {
       <div className='page-padding'>
         <div className="layouting">
           <div className="image-slider">
-            <img src="https://loket-production-sg.s3.ap-southeast-1.amazonaws.com/images/ss/1699410803_5mA8VQ.jpg" width={"100%"} alt="" />
+            <img src="https://loket-production-sg.s3.ap-southeast-1.amazonaws.com/images/ss/1690260495_PraZyu.jpg" width={"100%"} alt="" />
           </div>
           <div id="top-choice">
             <h1>Top Choice</h1>
@@ -230,7 +241,7 @@ const LandingPage = () => {
           <div id="filter-by-city" className='landing-events-list'>
             <h1>Popular in <span className='event-select-filter'>{printCityOption()}</span></h1>
             <div className="event-cards">
-              {printByCity()}
+              {printByCity().length ? printByCity() : <h3>No event found</h3>}
             </div>
           </div>
 

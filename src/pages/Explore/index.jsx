@@ -10,6 +10,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 const Explore = () => {
   const search = useLocation().search;
+  const [allEventLength, setAllEventLength] = useState()
   const [eventList, setEventList] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [eventPerPage, setEventPerPage] = useState(8)
@@ -18,13 +19,26 @@ const Explore = () => {
 
   const navigate = useNavigate();
 
-  const getEvent = () => {
-    axios.get(`${import.meta.env.VITE_API_URL}/events${search}`)
-    .then((res)=>{
-      setEventList(res.data)
-    }).catch((err)=>{
-      console.log(err);
-    })
+  const getAllEventLength = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/events`)
+      setAllEventLength(response.data.length)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getAllEventLength()
+  }, [])
+
+  const getEvent = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/events${search}`)
+      setEventList(response.data)
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(()=>{
@@ -41,8 +55,8 @@ const Explore = () => {
           onclick={() => navigate(`/event/${val.name}/${val.id}`)} 
           eventImage={val.banner}
           eventTitle={val.name}
-          eventDate={val.date}
-          eventPrice={val.price}
+          eventDate={(val.date).slice(0, 10)}
+          eventPrice={`Rp ${(val.price).toLocaleString("id")}`}
           promotor={val.account.username}
         />
       )
@@ -58,7 +72,7 @@ const Explore = () => {
         
         <div id="explore-content">
           <div id="explore-navbar">
-            <h1>Upcoming Events</h1>
+            <h1>Showing <b>{eventList.length}</b> from total <b>{allEventLength}</b> events listed</h1>
             <div id="explore-filter">
               <select name="" id="price-filter">
                 <option value="">Filter by price</option>
@@ -68,7 +82,7 @@ const Explore = () => {
             </div>
           </div>
           <div id="explore-cards">
-            {printEventList()}
+            {printEventList().length ? printEventList() : <h3>No event found</h3>}
           </div>
           <div id="pagination">
             <Pagination totalEvents={eventList.length} eventPerPage={eventPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
