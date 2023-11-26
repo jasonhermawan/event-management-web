@@ -28,3 +28,25 @@ transform:translateY(-2%);
 .right:hover{
     transform: scale(105%);
 }
+
+@keyframes runText {
+    0% {
+      transform: translateX(110%);
+    }
+    100% {
+      transform: translateX(-110%);
+    }
+  }
+  
+  .running-text-container {
+    white-space: nowrap; /* Mencegah teks berjatuhan ke bawah */
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+  
+  .running-text {
+    padding-right: 100%; /* Membuat teks memenuhi lebar container */
+    animation: runText 35s linear infinite; /* Sesuaikan durasi animasi sesuai kebutuhan */
+  }
+

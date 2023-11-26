@@ -13,7 +13,6 @@ import { Button } from "@chakra-ui/react";
 import { RiAccountCircleFill } from "react-icons/ri";
 import CardHistoryUser from "../../components/CardUserHistory";
 import axios from "axios";
-import { API_URL } from "../../helper";
 import EmptyPage from "./EmptyPage";
 import { useNavigate } from "react-router-dom";
 
@@ -29,6 +28,9 @@ export default function MyTicketPage() {
   }), []
 
   const [history, setHistory] = useState([]);
+
+  
+
 
 
   const getEvent = async () => {
@@ -56,6 +58,7 @@ try {
     });
   };
 
+
   return (
     <LayoutUser>
       <Flex
@@ -76,18 +79,10 @@ try {
           justifyContent={"space-between  "}
           p={"30px 50px"}
         >
-          <Text fontSize={{base:"13px"}} fontWeight={"bold"} color={"gray"}>
+          <Text fontSize={{base:"13px" , md:"20px"}} fontWeight={"bold"} color={"gray"}>
             My Ticket
           </Text>
-          <Button
-            borderRadius={"full"}
-            w={{base:"40px" , sm:"200px"}}
-            leftIcon={<RiAccountCircleFill />}
-            backgroundColor={"#F5F7FA"}
-            variant="solid"
-            >
-            <Text display={{base:"none" , sm :"block"}}>Profile User</Text>
-          </Button>
+         
         </Box>
         <Box w={"100%"} h={"100vh"} ml={{base:"20px" ,sm : "0px"}} p={{base:"0px" , sm:"0px 50px"}}>
           <Tabs w={"100%"} variant="unstyled" mt={"20px"}>

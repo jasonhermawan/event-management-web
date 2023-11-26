@@ -15,6 +15,8 @@ import ResetPass from "./pages/ResetPass";
 import ForgotPass from "./pages/ForgotPass";
 import PromotorPage from './pages/PromotorPage'
 import ScrollToTop from './components/ScrollToTop'
+import BasicInformation from "./pages/ProfileUser/BasicInformation";
+import Password from "./pages/ProfileUser/Password";
 
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPass />} />
           <Route path="/reset-password" element={<ResetPass/>} />
           <Route path='/promotor' element={<PromotorPage />}/>
+          <Route path='/profile-user/basic-information' element={<BasicInformation />}/>
+          <Route path='/profile-user/password' element={<Password />}/>
         </Routes>
       </div>
   );

@@ -2,27 +2,40 @@ import React from "react";
 import Layout from "../../Layout";
 import { Flex, Box, Text, Button, Checkbox } from "@chakra-ui/react";
 import { CiCalendarDate, CiLocationOn, CiTimer } from "react-icons/ci";
+import { useState, useEffect , } from "react";
+import { useNavigate } from "react-router-dom";
+ 
 
 const Checkout = () => {
-//   const [incheckout, setCheckout] = useState([]);
+  const navigate = useNavigate()
+  const [countdown, setCountdown] = useState(15 * 60); // 15 menit dalam detik
 
-//   const getCheckout = async () => {
-//    const result =  await axios.get(`${import.meta.env.VITE_API_URL}/event`)
-// try {
-//   setCheckout(result.data);
-// } catch (error) {
-//   console.log(error);
-// }
-//   };
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCountdown((prevCountdown) => prevCountdown - 1);
+      const newCountdown = prevCountdown - 1;
+      localStorage.setItem("countdown", newCountdown);
+      return newCountdown;
+    }, 1000);
 
-//   useEffect(() => {
-//     getCheckout();
-//   }, []);
+    // Membersihkan interval setelah komponen di-unmount
+    return () => clearInterval(intervalId);
+  }, []); // Dependensi kosong agar useEffect hanya dijalankan sekali saat komponen dimount
 
-  
+  const formatTime = (timeInSeconds) => {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = timeInSeconds % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0"
+    )}`;
+  };
+
+
+
   return (
     <Layout>
-      <Flex w={"100%"} h={"82vh"}>
+      <Flex w={"100%"} h={"82vh"} mt={"20px"}>
         <Box
           className="left-checkout"
           w={"60%"}
@@ -45,7 +58,11 @@ const Checkout = () => {
                 bgColor={"gray"}
               ></Box>
               <Box w={"60%"}>
-                <Text fontWeight={"bold"} fontSize={"30px"} color={"rgba(0,0,0,0.8)"}>
+                <Text
+                  fontWeight={"bold"}
+                  fontSize={"30px"}
+                  color={"rgba(0,0,0,0.8)"}
+                >
                   Purwadhika School Surabaya{" "}
                 </Text>
                 <Text
@@ -95,9 +112,14 @@ const Checkout = () => {
               backgroundColor={"gold"}
               fontWeight={"500"}
             >
-              <Text>11:00</Text>
-              <Text>Complete Your Payment</Text>
+              {countdown > 0 ? (
+                <Text>{formatTime(countdown)}</Text>
+              ) : (
+                <Text>Waktu sudah habis!</Text> 
+              )}
+
             </Box>
+              <Text fontWeight={"500"} textAlign={"center"} >Complete Your Payment</Text>
             <Box
               mt={"50px"}
               display={"flex"}
@@ -118,7 +140,7 @@ const Checkout = () => {
                 </span>{" "}
                 that apply at EventClick
               </Text>
-              <Button w={"90%"} colorScheme="blue">
+              <Button   w={"90%"} colorScheme="blue">
                 Get Tickets
               </Button>
             </Box>

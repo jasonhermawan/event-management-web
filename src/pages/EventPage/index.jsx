@@ -162,9 +162,9 @@ const EventPage = () => {
           <div id="event-cart">
             <div id="cart-card">
               <h3>Ticket Category</h3>
-              <TicketCategory ticketName="Silver" ticketPrice="Rp 25.000" />
-              <TicketCategory ticketName="Gold" ticketPrice="Rp 50.000" />
-              <TicketCategory ticketName="Platinum" ticketPrice="Rp 100.000" />
+              <TicketCategory ticketName="Silver" ticketPrice="Rp 25.000"value="siver"/>
+              <TicketCategory ticketName="Gold" ticketPrice="Rp 50.000" value="gold"/>
+              <TicketCategory ticketName="Platinum" ticketPrice="Rp 100.000"  value="platinum"/>
               <button
                 onClick={() => navigate("/checkout")}
                 style={{ cursor: "pointer" }}

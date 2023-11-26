@@ -8,47 +8,60 @@ import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { FormControl, FormErrorMessage } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormErrorMessage,
+  InputGroup,
+  InputRightAddon,
+} from "@chakra-ui/react";
 import axios from "axios";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 const Signup = () => {
-
-  const [username ,setUsername] = useState("")
-  const [email ,setEmail] = useState("")
-  const [password ,setPassword] = useState("")
-  const [passwordConfirmation , setPasswordConfirmation] = useState("")
-  const [errorMessage , setErrorMessage] = useState("")
-  
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isVisible, setIsVisible] = React.useState(false);
+  const [isVisi, setIsVisi] = React.useState(false);
 
   const navigate = useNavigate();
 
   const registerUser = async () => {
     try {
       const userData = {
-                 username,
-                 email,
-                 password,
-                 confirmPassword: passwordConfirmation,
-                 role: "user",
-               };
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/accounts/register`, userData);
-  
+        username,
+        email,
+        password,
+        confirmPassword: passwordConfirmation,
+        role: "user",
+      };
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/accounts/register`,
+        userData
+      );
+
       const { success, message } = response.data;
-  
+
       if (success) {
         // Registrasi berhasil, lakukan sesuatu seperti redirect atau menampilkan pesan sukses
-        alert("Registrasi sukses!")
-        navigate('/')
+        alert("Registrasi sukses!");
+        navigate("/");
       } else {
         // Registrasi gagal, tampilkan pesan error dari backend
         setErrorMessage(message);
-        navigate('/signin')
+        navigate("/signin");
       }
     } catch (error) {
-      navigate('/signup')
-       alert("Harap masukkan data dengan benar", error);
-      if (error.response && error.response.data && error.response.data.message) {
-        console.log("Server error message:", error.response.data.message)
+      navigate("/signup");
+      alert("Harap masukkan data dengan benar", error);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        console.log("Server error message:", error.response.data.message);
         setErrorMessage(error.response.data.message);
       } else {
         setErrorMessage(error);
@@ -67,7 +80,10 @@ const Signup = () => {
     onSubmit: registerUser,
 
     validationSchema: yup.object().shape({
-      username: yup.string().min(3 , "username Minimal 3 karakter").max(10 , "username tidak boleh lebih dari 10 karakter"),
+      username: yup
+        .string()
+        .min(3, "username Minimal 3 karakter")
+        .max(10, "username tidak boleh lebih dari 10 karakter"),
       email: yup.string().email("masukkan email dengan benar"),
       password: yup
         .string()
@@ -84,15 +100,24 @@ const Signup = () => {
   const handleForm = (event) => {
     const { target } = event;
     formik.setFieldValue(target.name, target.value);
-    console.log(target.name , target.value)
+    console.log(target.name, target.value);
   };
-
 
   return (
     <div id="signup-page-s">
       <div id="logo-div-s">
-        <img id="logoEv-s" src={Logo} alt="LogoEventclick" onClick={() => navigate("/")}/>
-        <img id="logoEg-s" src={LogoWhite} alt="LogoEventclick" onClick={() => navigate("/")}/>
+        <img
+          id="logoEv-s"
+          src={Logo}
+          alt="LogoEventclick"
+          onClick={() => navigate("/")}
+        />
+        <img
+          id="logoEg-s"
+          src={LogoWhite}
+          alt="LogoEventclick"
+          onClick={() => navigate("/")}
+        />
       </div>
 
       <div id="container-b-s">
@@ -107,15 +132,14 @@ const Signup = () => {
           <div id="place-b-s">
             <h1>Sign Up </h1>
             <form className="input" onSubmit={formik.handleSubmit}>
-                  
-              <FormControl  isInvalid={formik.errors.username}  >
+              <FormControl isInvalid={formik.errors.username}>
                 <input
-                onInput={ (e) => setUsername(e.target.value)}
+                  className="input-BTN"
+                  onInput={(e) => setUsername(e.target.value)}
                   onChange={handleForm}
                   type="text"
                   placeholder="Username"
                   name="username"
-
                 />
                 <FormErrorMessage fontSize={"12px"} ml={"5px"}>
                   {formik.errors.username}
@@ -123,6 +147,7 @@ const Signup = () => {
               </FormControl>
               <FormControl isInvalid={formik.errors.email}>
                 <input
+                  className="input-BTN"
                   onInput={(e) => setEmail(e.target.value)}
                   onChange={handleForm}
                   type="email"
@@ -134,32 +159,56 @@ const Signup = () => {
                 </FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={formik.errors.password}>
-              <input
-                onInput={(e) => setPassword(e.target.value)}
-                onChange={handleForm}
-                type="password"
-                placeholder="Password"
-                name="password"
-              />
-              <FormErrorMessage fontSize={"12px"} ml={"5px"}>
+                <InputGroup display={"flex"} alignItems={"center"}>
+                  <input
+                    className="input-BTN"
+                    onInput={(e) => setPassword(e.target.value)}
+                    onChange={handleForm}
+                    type={isVisible ? "text" : "password"}
+                    placeholder="Password"
+                    name="password"
+                  />
+                  <InputRightAddon
+                    bgColor={"#E8F0FE"}
+                    h={"50px"}
+                    borderRadius={"10px"}
+                    onClick={() => setIsVisible(!isVisible)}
+                    cursor={"pointer"}
+                  >
+                    {isVisible ? <IoMdEye /> : <IoMdEyeOff />}
+                  </InputRightAddon>
+                </InputGroup>
+                <FormErrorMessage fontSize={"12px"} ml={"5px"}>
                   {formik.errors.password}
                 </FormErrorMessage>
               </FormControl>
-             
               <FormControl isInvalid={formik.errors.confirmPassword}>
-              <input
-                onInput={(e) => setPasswordConfirmation(e.target.value) }
-                onChange={handleForm}
-                type="password"
-                placeholder="Confirm Password"
-                name="confirmPassword"
-              />
-               <FormErrorMessage fontSize={"12px"} ml={"5px"}>
+                <InputGroup display={"flex"} alignItems={"center"}>
+                  <input
+                    className="input-BTN"
+                    onInput={(e) => setPasswordConfirmation(e.target.value)}
+                    onChange={handleForm}
+                    type={isVisi ? "text" : "password"}
+                    placeholder="Confirm Password"
+                    name="confirmPassword"
+                  />
+                  <InputRightAddon
+                    bgColor={"#E8F0FE"}
+                    h={"50px"}
+                    borderRadius={"10px"}
+                    onClick={() => setIsVisi(!isVisi)}
+                    cursor={"pointer"}
+                  >
+                    {isVisi ? <IoMdEye /> : <IoMdEyeOff />}
+                  </InputRightAddon>
+                </InputGroup>
+
+                <FormErrorMessage fontSize={"12px"} ml={"5px"}>
                   {formik.errors.confirmPassword}
                 </FormErrorMessage>
               </FormControl>
               <button className="btn-form" type="Submit">
-                Register as a user 
+                Register as a user
               </button>
             </form>
             <p className="makesure-s">

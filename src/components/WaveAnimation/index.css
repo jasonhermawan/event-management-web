@@ -1,0 +1,23 @@
+@keyframes swing {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(30deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  
+  .container-wave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.wave{
+
+    position: relative;
+    animation: swing 2s infinite;
+}

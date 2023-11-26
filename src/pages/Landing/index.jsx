@@ -56,6 +56,7 @@ const LandingPage = () => {
   }
 
 
+
   useEffect(()=>{
     getEvent()
     getEventEntertainment()

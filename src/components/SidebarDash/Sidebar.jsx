@@ -40,6 +40,7 @@ function Sidebar() {
           <ButtonSidebar
             text="Event Exploration"
             logo={<MdOutlineExplore fontSize={"20px"} />}
+            onClick={()=> navigate("/")}
           />
           
           <ButtonSidebar
@@ -61,10 +62,12 @@ function Sidebar() {
           <ButtonSidebar
             text="Basic Information"
             logo={<RiAccountBoxLine fontSize={"20px"} />}
+            onClick={()=> navigate("/profile-user/basic-information")}
           />
           <ButtonSidebar
             text="Password"
             logo={<RiLockPasswordLine fontSize={"20px"} />}
+            onClick={() => navigate("/profile-user/password")}
           />
         </Box>
         <Box w={"100%"} h={"100px"} display={"flex"} flexDirection={"column"}>
