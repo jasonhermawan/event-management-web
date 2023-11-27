@@ -71,6 +71,7 @@ const LandingPage = () => {
   }
 
 
+
   useEffect(()=>{
     getPromotorAccounts()
     getEvent()

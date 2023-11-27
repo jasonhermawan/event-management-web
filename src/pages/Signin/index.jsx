@@ -3,18 +3,21 @@ import "./signin.css";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/blue-logo.png";
 import LogoWhite from "../../assets/white-logo.png";
-import { Button } from "@chakra-ui/react";
+import { Button, InputRightAddon, Input, InputGroup } from "@chakra-ui/react";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { FormControl, FormErrorMessage, Text } from "@chakra-ui/react";
 import axios from "axios";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { Box } from "@chakra-ui/react";
 
 const Signin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isVisible, setIsVisible] = React.useState(false);
 
   const loginUser = async () => {
     try {
@@ -62,11 +65,22 @@ const Signin = () => {
     formik.setFieldValue(target.name, target.value);
   };
 
+
   return (
     <div id="signin-page">
-      <div id="logo-div">
-        <img id="logoEv" src={Logo} alt="LogoEventclick" onClick={() => navigate("/")}/>
-        <img id="logoEg" src={LogoWhite} alt="LogoEventclick" onClick={() => navigate("/")}/>
+         
+      <div id="logo-div" onClick={() => navigate("/")}>
+        <img
+          id="logoEv"
+          src={Logo}
+          alt="LogoEventclick"
+        />
+        <img
+     
+          id="logoEg"
+          src={LogoWhite}
+          alt="LogoEventclick"
+        />
       </div>
 
       <div id="container-b">
@@ -83,6 +97,7 @@ const Signin = () => {
             <form onSubmit={formik.handleSubmit}>
               <FormControl isInvalid={formik.errors.email}>
                 <input
+                  className="input-BTN"
                   value={email}
                   onInput={(e) => setEmail(e.target.value)}
                   onChange={handleForm}
@@ -95,17 +110,29 @@ const Signin = () => {
                 </FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={formik.errors.password}>
-                <input
-                  value={password}
-                  onInput={(e) => setPassword(e.target.value)}
-                  onChange={handleForm}
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                />
-                <FormErrorMessage ml={"5px"} fontSize={"13px"}>
-                  {formik.errors.password}
-                </FormErrorMessage>
+                <InputGroup display={"flex"} alignItems={"center"}  >
+                  <input
+                    className="input-BTN"
+                    value={password}
+                    onInput={(e) => setPassword(e.target.value)}
+                    onChange={handleForm}
+                    type={isVisible ? "text" : "password"}
+                    placeholder="Password"
+                    name="password"
+                  />
+                  <InputRightAddon
+                  bgColor={"#E8F0FE"}
+                    h={"50px"}
+                    borderRadius={"10px"}
+                    onClick={() => setIsVisible(!isVisible)}
+                    cursor={"pointer"}
+                  >
+                    {isVisible ? < IoMdEye /> : <IoMdEyeOff />}
+                  </InputRightAddon>
+                </InputGroup>
+                  <FormErrorMessage ml={"5px"} fontSize={"13px"}>
+                    {formik.errors.password}
+                  </FormErrorMessage>
               </FormControl>
               <Text
                 ml={"5px"}

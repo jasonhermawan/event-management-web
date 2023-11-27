@@ -1,3 +1,4 @@
+
 .ticket-category-card {
   margin-top: 20px;
   padding: 20px;
@@ -16,6 +17,8 @@
 }
 
 .ticket-qty button {
+  background-color:rgb(3, 83, 164) ;
+  color: white;
   margin: 0;
   width: 30px;
   height: 30px;

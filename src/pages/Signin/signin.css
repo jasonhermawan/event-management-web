@@ -6,6 +6,8 @@
   flex-direction: column;
 }
 
+
+
 #logo-div {
   width: 100%;
   height: 50px;
@@ -25,6 +27,8 @@
   height: 100vh;
   display: flex;
   align-items: center;
+  z-index: 11;
+  
 }
 
 #logo-vector {
@@ -109,6 +113,18 @@
   width: 100%;
 }
 
+.input-pass:focus{
+  outline: none;
+  border: none;
+  background-color:#E8F0FE;
+  }
+
+.input-BTN:focus{
+outline: none;
+border: none;
+background-color:#E8F0FE;
+}
+
 @media screen and (max-width: 1000px) {
   #image-section-b {
     display: none;
@@ -124,6 +140,16 @@
 }
 
 @media screen and (max-width: 500px) {
+
+  
+#container-b {
+  max-width: 1272px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
   #form-section {
     width: 200px;
   }
@@ -161,6 +187,7 @@ width: 100%;
 
   #logoEg {
     display: block;
+    z-index:99;
     font-size: 20px;
     height: 28px;
     margin-bottom: 100px;

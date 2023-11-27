@@ -15,6 +15,9 @@ import ResetPass from "./pages/ResetPass";
 import ForgotPass from "./pages/ForgotPass";
 import PromotorPage from './pages/PromotorPage'
 import ScrollToTop from './components/ScrollToTop'
+import BasicInformation from "./pages/ProfileUser/BasicInformation";
+import Password from "./pages/ProfileUser/Password";
+import SuccesPayment from "./pages/SuccesPayment/SuccesPayment";
 
 
 function App() {
@@ -31,10 +34,13 @@ function App() {
           <Route path='/event/:eventname/:eventid' element={<EventPage />}/>
           <Route path="/explore" element={<Explore />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout/payment-succes" element={<SuccesPayment />} />
           <Route path="/create-event" element={<CreateEvent />} />
           <Route path="/forgot-password" element={<ForgotPass />} />
           <Route path="/reset-password" element={<ResetPass/>} />
           <Route path='/promotor/:name/:id' element={<PromotorPage />}/>
+          <Route path='/profile-user/basic-information' element={<BasicInformation />}/>
+          <Route path='/profile-user/password' element={<Password />}/>
         </Routes>
       </div>
   );
