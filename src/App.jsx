@@ -34,7 +34,7 @@ function App() {
           <Route path="/create-event" element={<CreateEvent />} />
           <Route path="/forgot-password" element={<ForgotPass />} />
           <Route path="/reset-password" element={<ResetPass/>} />
-          <Route path='/promotor' element={<PromotorPage />}/>
+          <Route path='/promotor/:name/:id' element={<PromotorPage />}/>
         </Routes>
       </div>
   );

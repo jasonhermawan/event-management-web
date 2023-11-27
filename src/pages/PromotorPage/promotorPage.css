@@ -1,0 +1,29 @@
+#promotor-page{
+  margin: auto;
+  width: 1300px;
+  padding-top: 50px;
+}
+
+#promotor-detail {
+  padding: 50px;
+  margin: auto;
+  width: 1300px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(211, 211, 211, 0.333);
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#promotor-detail .promotor-profile-name {
+  font-size: 32px;
+  margin-top: 10px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.events-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}

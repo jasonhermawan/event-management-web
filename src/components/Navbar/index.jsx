@@ -10,20 +10,23 @@ import axios from 'axios'
 const Navbar = () => {
   const token = localStorage.getItem("TOKEN");
   const [role, setRole] = useState("");
+  const [mobileClick, setMobileClick] = useState(false);
 
-  const getRole = async () => {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/accounts/role`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-    console.log("role", response);
-    setRole(response.data.role)
+  if (token) {
+    const getRole = async () => {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/accounts/role`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      console.log("role", response);
+      setRole(response.data.role)
+    }
+  
+    useEffect(() => {
+      getRole();
+    }, [])
   }
-
-  useEffect(() => {
-    getRole();
-  }, [])
 
   const printRightNavRole = () => {
     if (role === "user" || role === "promotor") {
@@ -89,7 +92,9 @@ const Navbar = () => {
     }).map((value) => {
       return (
         <SearchCard 
-          image={value.banner}
+          image={`${import.meta.env.VITE_API_URL}/public/events/${
+            value.banners[0].image
+          }`}
           onclick={() => {navigate(`/event/${value.name}/${value.id}`); setSearchInput("")}}
           eventname={value.name}
         />
@@ -122,12 +127,21 @@ const Navbar = () => {
         {printRightNavRole()}
         <div id="mobile-nav">
           <div className="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
+            <i class='bx bx-search-alt-2' onClick={() => setMobileClick(!mobileClick)}></i>
+            <i class='bx bxs-user' onClick={() => {token ? navigate(`/profile-user/my-ticket`) : navigate("/signin")}}></i>
           </div>
         </div>
       </div>
+      {mobileClick ? 
+        <div className="nav-mobile-dropdown">
+          <div id="mobile-input">
+            <input value={searchInput} type="text" placeholder='Search event name' className='mobile-nav-search' onChange={(e) => setSearchInput(e.target.value)}/>
+            {printSearch()}
+          </div>
+        </div>
+        :
+        ''
+      }
       <div id="mobile-menu">
         <div className="mobile-menu-item" onClick={() => navigate("/")}>
           <i class="fa-solid fa-house-chimney"></i>
@@ -141,8 +155,6 @@ const Navbar = () => {
           <i class="fa-solid fa-compass"></i>
           <h3>Explore</h3>
         </div>
-        <ButtonOutline buttonText="Sign up" onClick={() => navigate("/choose-role")} />
-        <ButtonPrimary buttonText="Sign in" onClick={() => navigate("/signin")} />
       </div>
     </div>
   )
