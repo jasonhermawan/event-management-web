@@ -26,9 +26,13 @@
 }
 
 #event-detail h1 {
-  font-size: 32px;
+  --max-lines: 2;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--max-lines);
+  font-size: 28px;
   font-weight: 600;
-  margin-bottom: 20px;
 }
 
 #event-info {

@@ -70,13 +70,13 @@
   padding: 0px;
 }
 
-#explore-more-btn{
+.explore-more-btn{
   margin-top: 50px;
   display: flex;
   justify-content: center;
 }
 
-#explore-more-btn button {
+.explore-more-btn button {
   padding: 8px 15px;
   background-color: transparent;
   border: solid 1px #007aff;
@@ -86,7 +86,7 @@
   transition: all ease 0.3s;
 }
 
-#explore-more-btn button:hover {
+.explore-more-btn button:hover {
   background-color: rgba(238, 238, 238, 0.328);
 }
 

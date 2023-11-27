@@ -7,11 +7,11 @@ const PromotorCard = (props) => {
     <div id='promotor-card'>
       <div className="top-promotor-card">
         <Avatar size="lg" src='https://bit.ly/broken-link' />
-        <h2>Draw Brighton</h2>
-        <p>10 Events</p>
+        <h2>{props.username}</h2>
+        <p>Promotor</p>
       </div>
       <div className="bottom-promotor-card">
-        <button>Stalk now</button>
+        <button onClick={props.onclick}>Stalk now</button>
       </div>
     </div>
   )

@@ -79,6 +79,10 @@
   display: none;
 }
 
+.nav-mobile-dropdown {
+  display: none;
+}
+
 @media screen and (max-width: 1620px) {
   #navbar {
     padding-left: 50px;
@@ -92,8 +96,41 @@
     padding-right: 50px;
   }
 
-  .nav-search {
+  #search-input-section {
     display: none;
+  }
+
+  #mobile-input {
+    width: 100%;
+    position: relative;
+  }
+
+  #mobile-account {
+    width: 50%;
+    position: relative;
+  }
+
+  .mobile-nav-search {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    outline: none;
+    padding: 8px 10px;
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  .mobile-nav-search::placeholder {
+    color: rgba(95, 95, 95, 0.728);
+  }
+
+  #search-input-result {
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.136);
+    padding: 10px;
   }
 
   #right-nav #desktop-nav {
@@ -104,10 +141,41 @@
     display: block;
   }
 
+  .nav-mobile-dropdown {
+    z-index: 10000;
+    display: block;
+    background-color: rgba(22, 100, 189, 0.867);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.463);
+    width: 100%;
+    position: absolute;
+    top: 65px;
+    left: 0px;
+    right: 0px;
+    padding: 20px;
+  }
+
+  .nav-account-dropdown {
+    z-index: 10000;
+    display: block;
+    background-color: rgba(22, 100, 189, 0.867);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.463);
+    width: 100%;
+    position: absolute;
+    top: 65px;
+    left: 0px;
+    right: 0px;
+    padding: 20px;
+  }
+
+
   .menu-toggle {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
+    gap: 20px;
+  }
+
+  .menu-toggle i {
+    font-size: 24px;
+    color: white;
   }
 
   .menu-toggle span {
