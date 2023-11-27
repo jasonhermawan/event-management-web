@@ -1,14 +1,20 @@
 import React from "react";
 import Layout from "../../Layout";
 import { Flex, Box, Text, Button, Checkbox } from "@chakra-ui/react";
-import { CiCalendarDate, CiLocationOn, CiTimer } from "react-icons/ci";
-import { useState, useEffect , } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
- 
+import TicketCategory from "../../components/TicketCategory";
+import "./index.css";
 
 const Checkout = () => {
-  const navigate = useNavigate()
-  const [countdown, setCountdown] = useState(15 * 60); // 15 menit dalam detik
+  const navigate = useNavigate();
+  const [countdown, setCountdown] = useState(15 * 60);
+  //state untuk menyimpan pemilihan tiket 
+  const [selectedTickets, setSelectedTickets] = useState({
+    Silver: false,
+    Gold: false,
+    Platinum: false,
+  });
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -31,7 +37,20 @@ const Checkout = () => {
     )}`;
   };
 
+  const ticketPrices = {
+    Silver: 25000,
+    Gold: 50000,
+    Platinum: 100000,
+  };
 
+  const calculateTotalPrice = () => {
+    return Object.keys(selectedTickets).reduce((total, ticket) => {
+      return selectedTickets[ticket] ? total + ticketPrices[ticket] : total;
+    }, 0);
+  };
+ 
+
+  /////////////////////////
 
   return (
     <Layout>
@@ -45,7 +64,7 @@ const Checkout = () => {
           <Box
             boxShadow={"0px 0px 5px 1px rgba(0,0,0,0.1)"}
             w={"80%"}
-            h={"85%"}
+            h={"200px"}
             mr={"60px"}
             borderRadius={"10px"}
           >
@@ -67,27 +86,30 @@ const Checkout = () => {
                 </Text>
                 <Text
                   display={"flex"}
+                  alignItems={"center"}
                   flexDirection={"row"}
                   fontSize={"14px"}
-                  m={"20px 0px"}
+                  m={"10px 0px"}
                 >
-                  <CiCalendarDate fontSize={"20px"} /> 12 Des 2023
+                  <i class="fa-solid fa-calendar-days"></i> 12 Des 2023
                 </Text>
                 <Text
                   display={"flex"}
+                  alignItems={"center"}
                   flexDirection={"row"}
                   fontSize={"14px"}
-                  m={"20px 0px"}
+                  m={"10px 0px"}
                 >
-                  <CiTimer fontSize={"20px"} /> 20:25 - 23:25
+                  <i class="fa-solid fa-clock"></i>19:00 - 20:00
                 </Text>
                 <Text
                   display={"flex"}
+                  alignItems={"center"}
                   flexDirection={"row"}
                   fontSize={"14px"}
-                  m={"20px 0px"}
+                  m={"10px 0px"}
                 >
-                  <CiLocationOn fontSize={"20px"} />
+                  <i class="fa-solid fa-location-dot"></i>
                   Surabaya , Jawa timur
                 </Text>
               </Box>
@@ -98,7 +120,7 @@ const Checkout = () => {
           <Box
             boxShadow={"0px 0px 5px 1px rgba(0,0,0,0.1)"}
             w={"80%"}
-            h={"45%"}
+            h={"100%"}
             borderRadius={"10px"}
           >
             <Box
@@ -113,17 +135,31 @@ const Checkout = () => {
               fontWeight={"500"}
             >
               {countdown > 0 ? (
-                <Text>{formatTime(countdown)}</Text>
+                <Text>{formatTime(countdown)} Complete Your Payment</Text>
               ) : (
-                <Text>Waktu sudah habis!</Text> 
+                <Text>Waktu sudah habis!</Text>
               )}
-
             </Box>
-              <Text fontWeight={"500"} textAlign={"center"} >Complete Your Payment</Text>
+            <Box p={"10px"}>
+              <TicketCategory 
+              ticketName="Silver" 
+              ticketPrice="Rp 25.000" 
+              onSelect={(isChecked) =>
+                setSelectedTickets((prev) => ({ ...prev, Silver: isChecked }))
+              }/>
+              <TicketCategory ticketName="Gold" ticketPrice="Rp 50.000" onSelect={(isChecked) =>
+                setSelectedTickets((prev) => ({ ...prev, Gold: isChecked }))
+              } />
+              <TicketCategory ticketName="Platinum" ticketPrice="Rp 100.000" onSelect={(isChecked) =>
+                setSelectedTickets((prev) => ({ ...prev, Platinum: isChecked }))
+              }/>
+            </Box>
+            <Box display={"flex"} justifyContent={"flex-end"} mr={"10px"}>
+            <Text>Total Price: Rp.{calculateTotalPrice()}</Text>
+            </Box>
             <Box
-              mt={"50px"}
               display={"flex"}
-              gap={"40px"}
+              gap={"20px"}
               alignItems={"center"}
               flexDirection={"column"}
             >
@@ -140,8 +176,12 @@ const Checkout = () => {
                 </span>{" "}
                 that apply at EventClick
               </Text>
-              <Button   w={"90%"} colorScheme="blue">
-                Get Tickets
+              <Button
+                onClick={() => navigate("/checkout/payment-succes")}
+                w={"90%"}
+                colorScheme="blue"
+              >
+                Checkout
               </Button>
             </Box>
           </Box>

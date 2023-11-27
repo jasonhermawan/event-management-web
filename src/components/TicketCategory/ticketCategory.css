@@ -1,5 +1,5 @@
 #ticket-category-card {
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 20px;
   display: flex;
   align-items: center;
@@ -7,6 +7,11 @@
   background-color: #ebf5ff;
   border: dashed 1px #0047cc88;
   border-radius: 10px;
+}
+
+#ticket-qty button{
+  background-color:rgb(3, 83, 164) ;
+  color: white;
 }
 
 #ticket-qty {

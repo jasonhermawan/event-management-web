@@ -6,10 +6,10 @@ export default function EmptyPage () {
     const navigate = useNavigate()
     return (
         <Flex w={"100%"} h={"70vh"} display={"flex"} justifyContent={"center"} alignItems={"center"} flexDirection={"column"} >
-             <Box fontSize={"150px"} color={"gray"}  opacity={"70%"}>
+             <Box fontSize={{base:"70px" , md:"150px"}} color={"gray"}  opacity={"70%"}>
              <HiOutlineTicket/>
              </Box>
-             <Text fontSize={"15px"} textAlign={"center"}  opacity={"70%"}>If you don't have a ticket yet, please buy a ticket first <br /> <span onClick={() => navigate("/")} style={{fontWeight:"bold", cursor:"pointer", color:"blue"}}>search Events</span> </Text>
+             <Text fontSize={{base:"13px" , md:"15px"}} textAlign={"center"}  opacity={"70%"}>If you don't have a ticket yet, please buy a ticket first <br /> <span onClick={() => navigate("/")} style={{fontWeight:"bold", cursor:"pointer", color:"blue"}}>search Events</span> </Text>
         </Flex>
     )
 }

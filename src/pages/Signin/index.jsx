@@ -11,6 +11,7 @@ import * as yup from "yup";
 import { FormControl, FormErrorMessage, Text } from "@chakra-ui/react";
 import axios from "axios";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { Box } from "@chakra-ui/react";
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -67,18 +68,18 @@ const Signin = () => {
 
   return (
     <div id="signin-page">
-      <div id="logo-div">
+         
+      <div id="logo-div" onClick={() => navigate("/")}>
         <img
           id="logoEv"
           src={Logo}
           alt="LogoEventclick"
-          onClick={() => navigate("/")}
         />
         <img
+     
           id="logoEg"
           src={LogoWhite}
           alt="LogoEventclick"
-          onClick={() => navigate("/")}
         />
       </div>
 

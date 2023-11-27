@@ -54,8 +54,8 @@ const EventPage = () => {
           }}
           eventImage={val.banner}
           eventTitle={val.name}
-          eventDate={(val.date).slice(0, 10)}
-          eventPrice={`Rp ${(val.price).toLocaleString("id")}`}
+          eventDate={val.date.slice(0, 10)}
+          eventPrice={`Rp ${val.price.toLocaleString("id")}`}
           promotor={val.account.username}
         />
       );
@@ -162,9 +162,21 @@ const EventPage = () => {
           <div id="event-cart">
             <div id="cart-card">
               <h3>Ticket Category</h3>
-              <TicketCategory ticketName="Silver" ticketPrice="Rp 25.000"value="siver"/>
-              <TicketCategory ticketName="Gold" ticketPrice="Rp 50.000" value="gold"/>
-              <TicketCategory ticketName="Platinum" ticketPrice="Rp 100.000"  value="platinum"/>
+              <TicketCategory
+                ticketName="Silver"
+                ticketPrice="Rp 25.000"
+                value="siver"
+              />
+              <TicketCategory
+                ticketName="Gold"
+                ticketPrice="Rp 50.000"
+                value="gold"
+              />
+              <TicketCategory
+                ticketName="Platinum"
+                ticketPrice="Rp 100.000"
+                value="platinum"
+              />
               <button
                 onClick={() => navigate("/checkout")}
                 style={{ cursor: "pointer" }}

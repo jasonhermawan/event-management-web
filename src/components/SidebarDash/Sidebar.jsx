@@ -8,9 +8,13 @@ import { MdLogout } from "react-icons/md";
 import { BsBrush } from "react-icons/bs";
 import { RiAccountBoxLine, RiLockPasswordLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { Button, Modal } from 'antd';
 
 function Sidebar() {
   const navigate = useNavigate();
+  const [modal2Open, setModal2Open] = useState(false);
+
   return (
     <Flex  >
       <Box position={"fixed"} left={"0px"} top={"0px"} bottom={"0px"} backgroundColor={"rgba(0, 40, 85, 1)"} w={{base:"50px" , sm:"270px"}} h={"100vh"} boxShadow={"0px 0px 3px 1px gray"}>
@@ -82,13 +86,23 @@ function Sidebar() {
           <Box position={"absolute"} bottom={"20px"}  w={"100%"} >
           <ButtonSidebar
             text="Logout"
-            onClick={() => {localStorage.clear(); navigate("/signin")}}
-            
+            // onClick={() => {localStorage.clear(); navigate("/signin")}}
+            onClick={() => setModal2Open(true)}
             logo={<MdLogout fontSize={"20px"} />}
           />
           </Box>
         </Box>
       </Box>
+      <Modal
+        title="Logout?"
+        centered
+        open={modal2Open}
+        width={250}
+        onOk={() => {setModal2Open(false); localStorage.clear(); navigate("/signin")}}
+        onCancel={() => setModal2Open(false)}
+      >
+      </Modal>
+      
     </Flex>
   );
 }

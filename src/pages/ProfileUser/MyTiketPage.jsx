@@ -67,6 +67,7 @@ try {
         h={"100vh"}
         display={"flex"}
         flexDirection={"column"}
+        
       >
         <Box
           className="Navbar"
@@ -79,18 +80,18 @@ try {
           justifyContent={"space-between  "}
           p={"30px 50px"}
         >
-          <Text fontSize={{base:"13px" , md:"20px"}} fontWeight={"bold"} color={"gray"}>
+          <Text fontSize={{base:"16px" , md:"20px"}} fontWeight={"bold"} color={"gray"}>
             My Ticket
           </Text>
          
         </Box>
-        <Box w={"100%"} h={"100vh"} ml={{base:"20px" ,sm : "0px"}} p={{base:"0px" , sm:"0px 50px"}}>
+        <Box w={"100%"} h={"100vh"} ml={{base:"0px" ,sm : "0px"}} p={{base:"0px" , sm:"0px 50px"}} >
           <Tabs w={"100%"} variant="unstyled" mt={"20px"}>
             <TabList w={"100%"} borderBottom={"1px solid rgba(237, 231, 225 )"}>
-              <Tab w={"20%"} fontWeight={"bold"} color={"gray"}>
+              <Tab fontSize={{base:"14px" , md:"18px"}} w={{base:"50%" , md:"20%"}} fontWeight={"bold"} color={"gray"}>
                 Active Events
               </Tab>
-              <Tab w={"20%"} fontWeight={"bold"} color={"gray"}>
+              <Tab fontSize={{base:"14px" , md:"18px"}} w={{base:"50%" , md:"20%"}} fontWeight={"bold"} color={"gray"}>
                 Past Events
               </Tab>
             </TabList>

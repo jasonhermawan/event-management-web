@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
 import './ticketCategory.css'
 
-const TicketCategory = (props) => {
+const TicketCategory = ({ticketName , ticketPrice , onSelect}) => {
   const [count, setCount] = useState(0)
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handleSelect = () => {
+    setIsSelected(!isSelected);
+    onSelect(ticketName, !isSelected);
+  };
 
   const onDecrement = () => {
     if (count > 0) {
@@ -21,13 +27,13 @@ const TicketCategory = (props) => {
   return (
     <div id="ticket-category-card">
       <div id="ticket-name">
-        <h3>{props.ticketName}</h3>
-        <p>{props.ticketPrice}</p>
+        <h3>{ticketName}</h3>
+        <p>{ticketPrice}</p>
       </div>
       <div id="ticket-qty">
-        <button onClick={()=>onDecrement()} style={{cursor:"pointer"}}>-</button>
+        <button onClick={()=>{onDecrement();handleSelect()}} style={{cursor:"pointer"}}>-</button>
         <p id='ticket-count'>{count}</p>
-        <button onClick={()=>onIncrement()} style={{cursor:"pointer"}}>+</button>
+        <button  onClick={()=>{onIncrement(); handleSelect()}} style={{cursor:"pointer"}}>+</button>
       </div>
     </div>
   )
