@@ -1,5 +1,6 @@
-#ticket-category-card {
-  margin-top: 10px;
+
+.ticket-category-card {
+  margin-top: 20px;
   padding: 20px;
   display: flex;
   align-items: center;
@@ -9,18 +10,15 @@
   border-radius: 10px;
 }
 
-#ticket-qty button{
-  background-color:rgb(3, 83, 164) ;
-  color: white;
-}
-
-#ticket-qty {
+.ticket-qty {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-#ticket-qty button {
+.ticket-qty button {
+  background-color:rgb(3, 83, 164) ;
+  color: white;
   margin: 0;
   width: 30px;
   height: 30px;
@@ -28,13 +26,13 @@
   padding: 0;
 }
 
-#ticket-count {
+.ticket-count {
   width: 10px;
   text-align: center;
 }
 
 @media screen and (max-width: 1100px) {
-  #ticket-category-card  {
+  .ticket-category-card  {
     padding: 13px;
   }
 }

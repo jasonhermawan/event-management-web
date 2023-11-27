@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import './ticketCategory.css'
+import { useToast } from '@chakra-ui/react'
+
 
 const TicketCategory = ({ticketName , ticketPrice , onSelect}) => {
+  const toast = useToast();
   const [count, setCount] = useState(0)
   const [isSelected, setIsSelected] = useState(false);
 
@@ -20,19 +23,26 @@ const TicketCategory = ({ticketName , ticketPrice , onSelect}) => {
     if (count < 5) {
       setCount(count+1);
     } else {
-      alert("Maximum 5 tickets per purchase")
+      toast({
+        title: "Max tickets",
+        description: "Maximum 5 per ticket category.",
+        isClosable: true,
+        duration: 5000,
+        status: "error",
+        position: "top"
+      })
     }
   }
 
   return (
-    <div id="ticket-category-card">
-      <div id="ticket-name">
+    <div className="ticket-category-card">
+      <div className="ticket-name">
         <h3>{ticketName}</h3>
         <p>{ticketPrice}</p>
       </div>
-      <div id="ticket-qty">
+      <div className="ticket-qty">
         <button onClick={()=>{onDecrement();handleSelect()}} style={{cursor:"pointer"}}>-</button>
-        <p id='ticket-count'>{count}</p>
+        <p className='ticket-count'>{count}</p>
         <button  onClick={()=>{onIncrement(); handleSelect()}} style={{cursor:"pointer"}}>+</button>
       </div>
     </div>

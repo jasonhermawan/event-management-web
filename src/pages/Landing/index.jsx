@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import PopularCard from '../../components/PopularCard'
 import PromotorCard from '../../components/PromotorCard'
 import LandingDropdown from '../../components/LandingDropdown'
+import convertDate from '../../convertFnc'
 
 const LandingPage = () => {
   const navigate = useNavigate()
@@ -16,8 +17,22 @@ const LandingPage = () => {
   const [eventEducation, setEventEducation] = useState([]);
   const [eventListByCity, setEventListByCity] = useState([]);
   const [dropdown, setDropdown] = useState(false);
-  const [selectedCity, setSelectedCity] = useState(1)
+  const [selectedCity, setSelectedCity] = useState(3)
   const [selectedCityName, setSelectedCityName] = useState("")
+  const [promotor, setPromotor] = useState([]);
+
+  console.log("tes date", `${"2023-05-05" > "2023-05-03"}`);
+  const today = new Date()
+  console.log("tes date()", today);
+
+  const getPromotorAccounts = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/accounts?role=promotor`)
+      setPromotor(response.data)
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const getEvent = async () => {
     try {
@@ -58,11 +73,23 @@ const LandingPage = () => {
 
 
   useEffect(()=>{
+    getPromotorAccounts()
     getEvent()
     getEventEntertainment()
     getEventEducation()
     getEventByCity()
   },[])
+
+  const printPromotorCard = () => {
+    return promotor.map((val) => {
+      return (
+        <PromotorCard 
+          username={val.username}
+          onclick = {() => navigate(`/promotor/${val.username}/${val.id}`)}
+        />
+      )
+    })
+  }
 
   const getCityName = async () => {
     const response = await axios.get(`${import.meta.env.VITE_API_URL}/cities?id=${selectedCity}`)
@@ -75,13 +102,18 @@ const LandingPage = () => {
 
   const printEventList = () => {
     return eventList.map((val)=>{
+      console.log("val", val);
       return(
         <EventCard 
           onclick={() => navigate(`/event/${val.name}/${val.id}`)}
-          eventImage={val.banner}
+          eventImage={`${import.meta.env.VITE_API_URL}/public/events/${
+            val.banners[0].image
+          }`}
           eventTitle={val.name}
-          eventDate={(val.date).slice(0, 10)}
-          eventPrice={`Rp ${(val.price).toLocaleString("id")}`}
+          eventDate={
+            val.startDate === val.endDate ? `${convertDate((val.startDate).slice(0, 10))}` : `${convertDate((val.startDate).slice(0, 10))} - ${convertDate((val.endDate).slice(0, 10))}`
+          }
+          eventPrice={`Rp ${(val.tickets[0].price).toLocaleString("id")}`}
           promotor={val.account.username}
         />
       )
@@ -93,10 +125,14 @@ const LandingPage = () => {
       return (
         <EventCard 
           onclick={() => navigate(`/event/${val.name}/${val.id}`)}
-          eventImage={val.banner}
+          eventImage={`${import.meta.env.VITE_API_URL}/public/events/${
+            val.banners[0].image
+          }`}
           eventTitle={val.name}
-          eventDate={(val.date).slice(0, 10)}
-          eventPrice={`Rp ${(val.price).toLocaleString("id")}`}
+          eventDate={
+            val.startDate === val.endDate ? `${convertDate((val.startDate).slice(0, 10))}` : `${convertDate((val.startDate).slice(0, 10))} - ${convertDate((val.endDate).slice(0, 10))}`
+          }
+          eventPrice={`Rp ${(val.tickets[0].price).toLocaleString("id")}`}
           promotor={val.account.username}
         />
       )
@@ -108,10 +144,14 @@ const LandingPage = () => {
       return (
         <EventCard
           onclick={() => navigate(`/event/${val.name}/${val.id}`)} 
-          eventImage={val.banner}
+          eventImage={`${import.meta.env.VITE_API_URL}/public/events/${
+            val.banners[0].image
+          }`}
           eventTitle={val.name}
-          eventDate={(val.date).slice(0, 10)}
-          eventPrice={`Rp ${(val.price).toLocaleString("id")}`}
+          eventDate={
+            val.startDate === val.endDate ? `${convertDate((val.startDate).slice(0, 10))}` : `${convertDate((val.startDate).slice(0, 10))} - ${convertDate((val.endDate).slice(0, 10))}`
+          }
+          eventPrice={`Rp ${(val.tickets[0].price).toLocaleString("id")}`}
           promotor={val.account.username}
         />
       )
@@ -123,10 +163,14 @@ const LandingPage = () => {
       return (
         <EventCard 
           onclick={() => navigate(`/event/${val.name}/${val.id}`)}
-          eventImage={val.banner}
+          eventImage={`${import.meta.env.VITE_API_URL}/public/events/${
+            val.banners[0].image
+          }`}
           eventTitle={val.name}
-          eventDate={(val.date).slice(0, 10)}
-          eventPrice={`Rp ${(val.price).toLocaleString("id")}`}
+          eventDate={
+            val.startDate === val.endDate ? `${convertDate((val.startDate).slice(0, 10))}` : `${convertDate((val.startDate).slice(0, 10))} - ${convertDate((val.endDate).slice(0, 10))}`
+          }
+          eventPrice={`Rp ${(val.tickets[0].price).toLocaleString("id")}`}
           promotor={val.account.username}
         />
       )
@@ -138,7 +182,9 @@ const LandingPage = () => {
       return (
         <PopularCard 
           nums={idx + 1}
-          img={val.banner}
+          img={`${import.meta.env.VITE_API_URL}/public/events/${
+            val.banners[0].image
+          }`}
         />
       )
     })
@@ -220,15 +266,7 @@ const LandingPage = () => {
           <div id='promotor-card-section'>
             <h1>Promotor to stalk</h1>
             <div id="card-container">
-              <PromotorCard />
-              <PromotorCard />
-              <PromotorCard />
-              <PromotorCard />
-              <PromotorCard />
-              <PromotorCard />
-              <PromotorCard />
-              <PromotorCard />
-              <PromotorCard />
+              {printPromotorCard()}
             </div>
           </div>
 
@@ -246,7 +284,7 @@ const LandingPage = () => {
             </div>
           </div>
 
-          <div id="explore-more-btn">
+          <div className="explore-more-btn">
             <button onClick={() => navigate("/explore")}>Explore more events</button>
           </div>
         </div>
