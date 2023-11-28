@@ -98,7 +98,6 @@ const SignupPromotor = () => {
   const handleForm = (event) => {
     const { target } = event;
     formik.setFieldValue(target.name, target.value);
-    console.log(target.name, target.value);
   };
 
   return (

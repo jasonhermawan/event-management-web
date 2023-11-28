@@ -13,8 +13,8 @@ import {
   TabPanel,
 } from "@chakra-ui/react";
 import axios from "axios";
-import EventCard from "../../components/EventCard";
 import convertDate from "../../convertFnc";
+import EventCardExplore from "../../components/EventCardExplore";
 
 const PromotorPage = () => {
   const navigate = useNavigate()
@@ -52,7 +52,7 @@ const PromotorPage = () => {
   const printOngoing = () => {
     return ongoing.map((val) => {
       return (
-        <EventCard
+        <EventCardExplore
           onclick={() => navigate(`/event/${val.name}/${val.id}`)}
           eventImage={`${import.meta.env.VITE_API_URL}/public/events/${
             val.banners[0].image
@@ -75,7 +75,7 @@ const PromotorPage = () => {
   const printPast = () => {
     return past.map((val) => {
       return (
-        <EventCard
+        <EventCardExplore
           eventImage={`${import.meta.env.VITE_API_URL}/public/events/${
             val.banners[0].image
           }`}

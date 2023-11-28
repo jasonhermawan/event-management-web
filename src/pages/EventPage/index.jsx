@@ -10,7 +10,9 @@ import convertDate from "../../convertFnc";
 import TicketList from "../../components/TicketList";
 
 const EventPage = () => {
+  const token = localStorage.getItem("TOKEN")
   const search = useLocation();
+  const [role, setRole] = useState("")
   const params = useParams();
   const [eventList, setEventList] = useState([]);
   const [eventName, setEventName] = useState("");
@@ -24,6 +26,21 @@ const EventPage = () => {
   const [location, setLocation] = useState("");
   const [tickets, setTickets] = useState([])
   const navigate = useNavigate();
+
+  if (token) {
+    const getRole = async () => {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/accounts/role`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setRole(response.data.role)
+    }
+  
+    useEffect(() => {
+      getRole();
+    }, [])
+  }
 
   const getEventDetail = async () => {
     try {
@@ -139,8 +156,9 @@ const EventPage = () => {
               <h3>Ticket Category</h3>
               {printTickets()}
               <button
-                onClick={() => navigate("/checkout")}
-                style={{ cursor: "pointer" }}
+                onClick={() => {role === "promotor" ? navigate("/404") : !role ? navigate("/signin") : navigate("/checkout")}}
+                style={role === "promotor" ? {cursor: "not-allowed"} : {cursor: "pointer"}}
+                disabled={role === "promotor" ? true : false}
               >
                 Choose ticket
               </button>
@@ -164,10 +182,10 @@ const EventPage = () => {
                   <div id="mobile-tickets">
                     {printTickets()}
                     <button
-                      onClick={() => navigate("/checkout")}
+                      onClick={() => {role === "promotor" ? navigate("/404") : !role ? navigate("/signin") : navigate("/checkout")}}
                       style={{ cursor: "pointer" }}
                     >
-                      Buy Ticket
+                      Choose Ticket
                     </button>
                   </div>
                 </TabPanel>

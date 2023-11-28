@@ -6,7 +6,7 @@ const PopularCard = (props) => {
     <div id='popular-card'>
       <h1>{props.nums}</h1>
       <div id='popular-banner'>
-       <img src={props.img} alt=""/>
+       <img src={props.img} alt="" onClick={props.onclick}/>
       </div>
     </div>
   )

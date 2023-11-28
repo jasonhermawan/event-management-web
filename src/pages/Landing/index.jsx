@@ -13,6 +13,7 @@ const LandingPage = () => {
   const navigate = useNavigate()
   const [cityList, setCityList] = useState([]);
   const [eventList, setEventList] = useState([])
+  const [nearestEvents, setNearestEvents] = useState([])
   const [eventEntertainment, setEventEntertainment] = useState([]);
   const [eventEducation, setEventEducation] = useState([]);
   const [eventListByCity, setEventListByCity] = useState([]);
@@ -20,6 +21,7 @@ const LandingPage = () => {
   const [selectedCity, setSelectedCity] = useState(3)
   const [selectedCityName, setSelectedCityName] = useState("")
   const [promotor, setPromotor] = useState([]);
+  const [searchInput, setSearchInput] = useState("")
 
   console.log("tes date", `${"2023-05-05" > "2023-05-03"}`);
   const today = new Date()
@@ -29,6 +31,15 @@ const LandingPage = () => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_API_URL}/accounts?role=promotor`)
       setPromotor(response.data)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const getNearestEvents = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/events?sortby=asc`)
+      setNearestEvents(response.data)
     } catch (error) {
       console.log(error);
     }
@@ -73,6 +84,7 @@ const LandingPage = () => {
 
 
   useEffect(()=>{
+    getNearestEvents()
     getPromotorAccounts()
     getEvent()
     getEventEntertainment()
@@ -177,14 +189,16 @@ const LandingPage = () => {
     })
   }
 
+  // Nearest Events
   const printPopular = () => {
-    return eventList.slice(1,4).map((val, idx) => {
+    return nearestEvents.slice(1,4).map((val, idx) => {
       return (
         <PopularCard 
           nums={idx + 1}
           img={`${import.meta.env.VITE_API_URL}/public/events/${
             val.banners[0].image
           }`}
+          onclick={() => navigate(`/event/${val.name}/${val.id}`)}
         />
       )
     })
@@ -200,17 +214,26 @@ const LandingPage = () => {
   }, [])
 
   const printCityDropdown = () => {
-      return cityList.map((value) => {
-        if (dropdown) {
-          return (
-            <LandingDropdown 
-              onclick={() => {setSelectedCity(value.id); setDropdown(!dropdown)}}
-              cityname={value.city}
-            />
-          )
-        }
+      // return cityList.map((value) => {
+      //   if (dropdown) {
+      //     return (
+      //       <LandingDropdown 
+      //         onclick={() => {setSelectedCity(value.id); setDropdown(!dropdown)}}
+      //         cityname={value.city}
+      //       />
+      //     )
+      //   }
+      // })
+      return cityList.filter((value) => {
+        return value.city.toLowerCase().includes(searchInput.toLowerCase());
+      }).map((value) => {
+        return (
+          <LandingDropdown 
+            onclick={() => {setSelectedCity(value.id); setDropdown(!dropdown)}}
+            cityname={value.city}
+          />
+        )
       })
-    
   }
 
   useEffect(() => {
@@ -222,7 +245,7 @@ const LandingPage = () => {
       <div style={{display:"inline-block"}}>
         <div className="option-title" onClick={() => setDropdown(!dropdown)}>{selectedCityName} {dropdown ? <i class='bx bxs-chevron-up' ></i> : <i class='bx bxs-chevron-down' ></i>}</div>
         {dropdown ? <div className="dropdown-section">
-          <input placeholder='Search city' />
+          <input type="text" placeholder="Search location" onChange={(e) => setSearchInput(e.target.value)}/>
           {printCityDropdown()}
         </div> : ""}
       </div>
@@ -245,7 +268,7 @@ const LandingPage = () => {
         </div>
         <div id="most-popular">
           <div className="layouting">
-            <h1>Popular Events</h1>
+            <h1>Nearest Events</h1>
             <div className="popular-events" >
               {printPopular()}
             </div>

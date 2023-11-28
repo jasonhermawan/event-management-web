@@ -12,13 +12,23 @@
 }
 
 .dropdown-item i {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: rgba(229, 237, 248, 0.588);
   color: #0049cc;
-  padding: 8px;
   border-radius: 50px;
 }
 
 .dropdown-divider {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+@media screen and (max-width: 550px) {
+  .dropdown-item h2 {
+    font-size: 16px;
+  }
 }

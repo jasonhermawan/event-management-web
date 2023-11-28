@@ -148,10 +148,33 @@
     margin-bottom: 50px;
   }
 
+  .image-banner img {
+    border-radius: 10px;
+  }
+
+  .dropdown-section {
+    color: black;
+    position: absolute;
+    background-color: white;
+    padding: 20px;
+    right: 30px;
+    height: 250px;
+    overflow: auto;
+    width:250px;
+    box-shadow: 0 0 10px rgba(214, 214, 214, 0.427);
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
   #top-choice h1 {
     margin-bottom: 10px;
     font-weight: 700;
-    font-size: 28px;
+    font-size: 24px;
+  }
+
+  #promotor-card-section h1 {
+    font-size: 24px;
   }
 
   .event-cards {
@@ -161,12 +184,12 @@
   #most-popular h1 {
     margin-bottom: 30px;
     font-weight: 700;
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .landing-events-list h1 {
     margin-bottom: 10px;
     font-weight: 700;
-    font-size: 28px;
+    font-size: 24px;
   }
 }

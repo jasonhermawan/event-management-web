@@ -206,7 +206,12 @@
   .mobile-menu-item {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 5px;
+    color: gray;
+  }
+
+  .mobile-menu-item i {
     text-align: center;
     color: gray;
   }

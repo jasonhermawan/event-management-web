@@ -76,6 +76,10 @@
 }
 
 #event-desc p {
+  white-space: pre-line;
+}
+
+#event-desc p {
   font-size: 18px;
 }
 

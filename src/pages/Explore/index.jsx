@@ -16,7 +16,7 @@ const Explore = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [allEventLength, setAllEventLength] = useState()
   const [eventList, setEventList] = useState([])
-  const [eventPerPage, setEventPerPage] = useState(4)
+  const [eventPerPage, setEventPerPage] = useState(8)
   const [sortClick, setSortClick] = useState(false);
   const [sortResult, setSortResult] = useState("Date");
 

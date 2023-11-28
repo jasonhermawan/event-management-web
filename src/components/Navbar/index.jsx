@@ -11,6 +11,7 @@ const Navbar = () => {
   const token = localStorage.getItem("TOKEN");
   const [role, setRole] = useState("");
   const [mobileClick, setMobileClick] = useState(false);
+  const [username, setUsername] = useState("")
 
   if (token) {
     const getRole = async () => {
@@ -19,8 +20,8 @@ const Navbar = () => {
           Authorization: `Bearer ${token}`
         }
       });
-      console.log("role", response);
       setRole(response.data.role)
+      setUsername(response.data.username)
     }
   
     useEffect(() => {
@@ -29,7 +30,7 @@ const Navbar = () => {
   }
 
   const printRightNavRole = () => {
-    if (role === "user" || role === "promotor") {
+    if (role === "promotor") {
       return (
         <div id="desktop-nav">
             <div className="nav-menu" onClick={() => navigate("/create-event")} style={{cursor: "pointer"}}>
@@ -42,9 +43,22 @@ const Navbar = () => {
             </div>
             <div className="nav-menu" onClick={() => navigate("/profile-user/my-ticket")} style={{cursor: "pointer"}}>
               <i class='bx bxs-user' ></i>
-              <h3>Account</h3>
+              <h3>{username}</h3>
             </div>
         </div>
+      )
+    } else if (role === "user") {
+      return (
+        <div id="desktop-nav">
+            <div className="nav-menu" onClick={() => navigate("/explore")} style={{cursor: "pointer"}}>
+              <i class="fa-solid fa-compass"></i>
+              <h3>Explore</h3>
+            </div>
+            <div className="nav-menu" onClick={() => navigate("/profile-user/my-ticket")} style={{cursor: "pointer"}}>
+              <i class='bx bxs-user' ></i>
+              <h3>{username}</h3>
+            </div>
+          </div>
       )
     } else {
       return (
@@ -128,7 +142,6 @@ const Navbar = () => {
         <div id="mobile-nav">
           <div className="menu-toggle">
             <i class='bx bx-search-alt-2' onClick={() => setMobileClick(!mobileClick)}></i>
-            <i class='bx bxs-user' onClick={() => {token ? navigate(`/profile-user/my-ticket`) : navigate("/signin")}}></i>
           </div>
         </div>
       </div>
@@ -147,13 +160,13 @@ const Navbar = () => {
           <i class="fa-solid fa-house-chimney"></i>
           <h3>Home</h3>
         </div>
-        <div className="mobile-menu-item" onClick={() => navigate("/")}>
-          <i class="fa-solid fa-calendar-plus"></i>
-          <h3>Create Event</h3>
-        </div>
         <div className="mobile-menu-item" onClick={() => navigate("/explore")}>
           <i class="fa-solid fa-compass"></i>
           <h3>Explore</h3>
+        </div>
+        <div className="mobile-menu-item" onClick={() => {token ? navigate(`/profile-user/my-ticket`) : navigate("/signin")}}>
+        <i class='bx bxs-user'></i>
+          <h3>Account</h3>
         </div>
       </div>
     </div>

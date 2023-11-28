@@ -50,7 +50,9 @@ try {
     return history.map((val) => {
       return (
           <CardHistoryUser
-            HistoryBanner={val.banner}
+            HistoryBanner={`${import.meta.env.VITE_API_URL}/public/events/${
+              val.banners[0].image
+            }`}
             HistoryName={val.name}
             HistoryDate={val.date}
           />

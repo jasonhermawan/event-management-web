@@ -18,6 +18,7 @@ import ScrollToTop from './components/ScrollToTop'
 import BasicInformation from "./pages/ProfileUser/BasicInformation";
 import Password from "./pages/ProfileUser/Password";
 import SuccesPayment from "./pages/SuccesPayment/SuccesPayment";
+import NotFound from "./pages/NotFound";
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           <Route path='/promotor/:name/:id' element={<PromotorPage />}/>
           <Route path='/profile-user/basic-information' element={<BasicInformation />}/>
           <Route path='/profile-user/password' element={<Password />}/>
+          <Route path="*" element={<NotFound />}/>
         </Routes>
       </div>
   );

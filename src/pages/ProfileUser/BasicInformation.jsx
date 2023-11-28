@@ -144,9 +144,9 @@ const BasicInformation = () => {
               m={"10px 0px"}
             >
               <Text fontSize={{base:"14px" ,md:"18px"}} fontWeight={"bold"}>
-                {username}
+                Username
               </Text>
-              <Text fontSize={{base:"12px" ,md:"13px"}} color={"gray"}>Chandra</Text>
+              <Text fontSize={{base:"12px" ,md:"13px"}} color={"gray"}>{username}</Text>
               <hr style={{ width: "90%" }} />
             </Box>
           </Box>

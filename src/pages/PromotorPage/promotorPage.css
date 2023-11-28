@@ -27,3 +27,23 @@
   flex-wrap: wrap;
   width: 100%;
 }
+
+@media screen and (max-width: 1450px) {
+  #promotor-page{
+    width: 80%;
+  }
+
+  #promotor-detail {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #promotor-page{
+    width: 95%;
+  }
+
+  #promotor-detail {
+    width: 100%;
+  }
+}

@@ -31,6 +31,7 @@ const ExploreSidebar = (props) => {
   const [selectedTopicName, setSelectedTopicName] = useState("");
 
   const [sortClick, setSortClick] = useState(false);
+  const [sortResult, setSortResult] = useState("Date");
 
   const getLocationList = async () => {
     const response = await axios.get(`${import.meta.env.VITE_API_URL}/cities`);
@@ -64,7 +65,7 @@ const ExploreSidebar = (props) => {
             {
               !search
                 ? navigate(`/explore?type=online`)
-                : navigate(`/explore${search.replaceAll(`${pageNumber}`, "1")}&type=online`);
+                : navigate(`/explore${search.replaceAll(`page=${pageNumber}`, "page=1")}&type=online`);
             };
           }}
           text="Online"
@@ -77,7 +78,7 @@ const ExploreSidebar = (props) => {
             {
               !search
                 ? navigate(`/explore?type=offline`)
-                : navigate(`/explore${search.replaceAll(`${pageNumber}`, "1")}&type=offline`);
+                : navigate(`/explore${search.replaceAll(`page=${pageNumber}`, "page=1")}&type=offline`);
             };
           }}
           text="Offline"
@@ -116,7 +117,7 @@ const ExploreSidebar = (props) => {
                 {
                   !search
                     ? navigate(`/explore?cityid=${val.id}`)
-                    : navigate(`/explore${search.replaceAll(`${pageNumber}`, "1")}&cityid=${val.id}`);
+                    : navigate(`/explore${search.replaceAll(`page=${pageNumber}`, "page=1")}&cityid=${val.id}`);
                 }
               }}
               text={val.city}
@@ -167,7 +168,7 @@ const ExploreSidebar = (props) => {
               {
                 !search
                   ? navigate(`/explore?formatid=${val.id}`)
-                  : navigate(`/explore${search.replaceAll(`${pageNumber}`, "1")}&formatid=${val.id}`);
+                  : navigate(`/explore${search.replaceAll(`page=${pageNumber}`, "page=1")}&formatid=${val.id}`);
               }
             }}
             text={val.format}
@@ -219,7 +220,7 @@ const ExploreSidebar = (props) => {
               {
                 !search
                   ? navigate(`/explore?topicid=${val.id}`)
-                  : navigate(`/explore${search.replaceAll(`${pageNumber}`, "1")}&topicid=${val.id}`);
+                  : navigate(`/explore${search.replaceAll(`page=${pageNumber}`, "page=1")}&topicid=${val.id}`);
               }
             }}
             text={val.topic}
@@ -283,6 +284,21 @@ const ExploreSidebar = (props) => {
       );
     }
   };
+
+  const getSortResult = () => {
+    const result = searchParams.get("sortby")
+    if (result === "asc") {
+      setSortResult("Closest date")
+    } else if (result === "desc") {
+      setSortResult("Furthest date")
+    } else {
+      setSortResult("Date")
+    }
+  }
+
+  useEffect(() => {
+    getSortResult()
+  }, [sortClick])
 
   const printFilteringSection = () => {
     return (
@@ -401,7 +417,7 @@ const ExploreSidebar = (props) => {
               id="sort-button"
               onClick={() => setSortClick(!sortClick)}
             >
-              Date
+              {sortResult}
             </button>
             {printSort()}
           </div>

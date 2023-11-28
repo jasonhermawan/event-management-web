@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -33,8 +33,12 @@ import Banner from "../../assets/banner-event.jpg";
 // import { FaMoneyBillAlt, FaMoneyBillWave } from 'react-icons/fa';
 import axios from "axios";
 import { API_URL } from "../../helper";
+import { useNavigate } from "react-router-dom";
 
 const CreateEvent = () => {
+  const [role, setRole] = useState("")
+  const token = localStorage.getItem("TOKEN")
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDateTimeModalOpen, setIsDateTimeModalOpen] = useState(false);
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
@@ -67,6 +71,32 @@ const CreateEvent = () => {
   const [locationPreview, setLocationPreview] = useState("");
   const [catEventPreview, setCatEventPreview] = useState("");
   const [banner, setBanner] = useState("");
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/signin")
+    }
+  })
+
+  const checkRole = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/accounts/role`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      if (response.data.role != "promotor") {
+        navigate("/not-found")
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    checkRole()
+  }, [])
+
 
 
   const handleTabChange = (index) => {
