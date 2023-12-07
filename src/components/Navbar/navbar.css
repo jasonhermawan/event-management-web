@@ -66,6 +66,10 @@
   gap: 10px;
 }
 
+.nav-menu i {
+  color: white;
+}
+
 .nav-menu h3 {
   font-weight: 500;
   font-size: 16px;
@@ -144,7 +148,7 @@
   .nav-mobile-dropdown {
     z-index: 10000;
     display: block;
-    background-color: rgba(22, 100, 189, 0.867);
+    background-color: rgb(22, 100, 189);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.463);
     width: 100%;
     position: absolute;

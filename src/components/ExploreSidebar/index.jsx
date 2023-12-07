@@ -386,11 +386,6 @@ const ExploreSidebar = (props) => {
     setSortClick(false)
   }, [search])
 
-  // useEffect(() => {
-  //   searchParams.set("page", "1")
-  //   setSearchParams(searchParams)
-  // }, [searchParams.get("type")])
-
   return (
     <div id="explore-bar">
       <div id="desktop-bar">

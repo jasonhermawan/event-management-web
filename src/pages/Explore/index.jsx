@@ -20,8 +20,6 @@ const Explore = () => {
   const [sortClick, setSortClick] = useState(false);
   const [sortResult, setSortResult] = useState("Date");
 
-  console.log(search);
-
   const navigate = useNavigate();
 
   const getAllEventLength = async () => {

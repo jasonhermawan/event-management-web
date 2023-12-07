@@ -30,7 +30,7 @@ const ChooseRole = () => {
         alignItems={"center"}
       >
         <Box >
-          <Box   mb={{base:"0px", md:"20px"}} display={"flex"} justifyContent={"center"}>
+          <Box   mb={{base:"0px", lg:"20px"}} display={"flex"} justifyContent={"center"}>
             <Img 
               w={{ base: "150px" }}
               cursor={"pointer"}
@@ -39,12 +39,12 @@ const ChooseRole = () => {
               src={LogoChoose}
             ></Img>
           </Box>
-          <Box w={{base:"400px" , md:"fit-content"}} h={{base:"50px"}} display={"flex"} alignItems={"center"} justifyContent={"center"} flexDir={"column"}>
+          <Box w={{base:"400px" , lg:"fit-content"}} h={{base:"50px"}} display={"flex"} alignItems={"center"} justifyContent={"center"} flexDir={"column"}>
             <Text
               className="a"
               display={"flex"}
               flexDir={"row"}
-              fontSize={{base:"25px" , md:"40px"}}
+              fontSize={{base:"25px" , lg:"40px"}}
               fontWeight={"bolder"}
             >
               Welcome to EventClick!{" "}
@@ -52,23 +52,23 @@ const ChooseRole = () => {
                 <WaveAnimation />
               </span>
             </Text>
-            <Text display={{base:"none" , md:"block"}} textAlign={"center"}>
+            <Text display={{base:"none" , lg:"block"}} textAlign={"center"}>
               We’re glad you’re here! What can we help you with first?
             </Text>
           </Box>
         </Box>
         <Box
-          w={{base:"130%" , md:"90%"}}
+          w={{base:"130%" , lg:"90%"}}
           h={"100%"}
           display={"flex"}
-          flexDir={{base:"column" ,md:"row"}}
+          flexDir={{base:"column" ,lg:"row"}}
           justifyContent={"space-evenly"}
           alignItems={"center"}
         >
           <Box
             className="gray"
-            w={{base:"100%" , md:"40%"}}
-            h={{base:"70%" , md:"85%"}}
+            w={{base:"100%" , lg:"40%"}}
+            h={{base:"70%" , lg:"85%"}}
             display={"flex"}
             boxShadow={"0px 0px 5px 1px rgba(0 ,0, 0 ,0.2)"}
             bgColor={"white"}
@@ -86,17 +86,17 @@ const ChooseRole = () => {
               justifyContent={"center"}
               alignItems={"center"}
               borderRadius={"full"}
-              w={{base:"110px" , md:"120px"}}
-              h={{base:"110px" , md:"120px"}}
+              w={{base:"110px" , lg:"120px"}}
+              h={{base:"110px" , lg:"120px"}}
               boxShadow={"0px 0px 5px 1px rgba(0 ,0, 0 ,0.2)"}
             >
               <CiUser fontSize={"100px"} color="white" />
             </Box>
             <Text
               fontWeight={"500"}
-              fontSize={{base:"16px" , md:"20px"}}
+              fontSize={{base:"16px" , lg:"20px"}}
               color={"rgba(0 ,0, 0 ,0.8)"}
-              mt={{base:"0px" , md:"20px"}}
+              mt={{base:"0px" , lg:"20px"}}
             >
               Find experience as a User
             </Text>
@@ -104,8 +104,8 @@ const ChooseRole = () => {
           <Box
             className="blue"
             mt={{base:"20px"}}
-            w={{base:"100%" , md:"40%"}}
-            h={{base:"70%" , md:"85%"}}
+            w={{base:"100%" , lg:"40%"}}
+            h={{base:"70%" , lg:"85%"}}
             display={"flex"}
             justifyContent={"center"}
             bgColor={"white"}
@@ -123,34 +123,21 @@ const ChooseRole = () => {
               alignItems={"center"}
               bgColor={"rgb(0, 53, 106)"}
               borderRadius={"full"}
-              w={{base:"110px" , md:"120px"}}
-              h={{base:"110px" , md:"120px"}}
+              w={{base:"110px" , lg:"120px"}}
+              h={{base:"110px" , lg:"120px"}}
               boxShadow={"0px 0px 5px 1px rgba(0 ,0, 0 ,0.2)"}
             >
               <CiCalendar fontSize={"100px"} color="white" />
             </Box>
             <Text
-              mt={{base:"0px" , md:"20px"}}
+              mt={{base:"0px" , lg:"20px"}}
               fontWeight={"500"}
-              fontSize={{base:"16px" , md:"21px"}}
+              fontSize={{base:"16px" , lg:"21px"}}
               color={"rgba(0 ,0, 0 ,0.8)"}
             >
               Organize an Event
             </Text>
           </Box>
-        </Box>
-      </Box>
-      <Box className="running-text-container" pos={"absolute"} bottom={"0px"}>
-        <Box className="running-text ">
-          <Text>
-            Berita heboh: Anak-anak mengumumkan boikot sayuran. Mereka
-            menyatakan bahwa 'kentang goreng adalah sayur yang lebih enak' ---
-            Penelitian menunjukkan bahwa tertawa dapat meningkatkan kesehatan.
-            Jadi, bacalah berita ini dengan senyum! --- Dalam berita cuaca,
-            matahari dilaporkan berhenti bersinar karena malu ketika awan
-            menyapa. -- Terimakasih sudah membaca berita yang ga penting ini ,
-            karena yang penting di dunia ini cuma kamu xixixi.{" "}
-          </Text>
         </Box>
       </Box>
     </Flex>

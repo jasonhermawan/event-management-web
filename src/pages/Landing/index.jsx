@@ -23,9 +23,7 @@ const LandingPage = () => {
   const [promotor, setPromotor] = useState([]);
   const [searchInput, setSearchInput] = useState("")
 
-  console.log("tes date", `${"2023-05-05" > "2023-05-03"}`);
   const today = new Date()
-  console.log("tes date()", today);
 
   const getPromotorAccounts = async () => {
     try {
@@ -114,7 +112,6 @@ const LandingPage = () => {
 
   const printEventList = () => {
     return eventList.map((val)=>{
-      console.log("val", val);
       return(
         <EventCard 
           onclick={() => navigate(`/event/${val.name}/${val.id}`)}

@@ -18,3 +18,10 @@
   background-color: rgba(219, 219, 219, 0.237);
   border-radius: 5px;
 }
+
+@media screen and (max-width: 650px) {
+  #search-card-content p {
+    font-weight: 500;
+    font-size: 14px;
+  }
+}
